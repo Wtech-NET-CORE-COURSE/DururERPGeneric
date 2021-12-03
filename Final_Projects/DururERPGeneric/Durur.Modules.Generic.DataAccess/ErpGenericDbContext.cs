@@ -1,0 +1,56 @@
+﻿using Durur.Modules.Generic.Entities.Model;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Durur.Modules.Generic.DataAccess
+{
+    public class ErpGenericDbContext : DbContext
+    {
+        public DbSet<Job> Jobs { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
+
+        public DbSet<Location> Locations { get; set; }
+
+        public DbSet<Department> Departments { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
+
+        public DbSet<Warehouse> Warehouses { get; set; }
+
+        public DbSet<Supplier> Suppliers { get; set; }
+
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Inventory> Inventories { get; set; }
+
+        public DbSet<OrderStatus> Order_Statuses { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<CustomerAddress> Customer_Addresses { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderedItem> Ordered_Items { get; set; }
+
+        public DbSet<CompanyPosition> Company_Positions { get; set; }
+
+        public DbSet<EmployeeCompanyPosition> Employee_Company_Positions { get; set; }
+
+       public ErpGenericDbContext(DbContextOptions<ErpGenericDbContext> options)
+           : base(options)
+        {
+        }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+        
+
+    }
+}

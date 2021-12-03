@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
+
+namespace Durur.Modules.Generic.Entities.Model
+{
+    public class CompanyPosition : DateLogEntity
+    {
+
+        public int Company_Position_ID { get; set; }
+
+        public string Company_Position_Name { get; set; }
+
+        public string Company_Position_Description { get; set; }
+
+        public EmployeeCompanyPosition EmployeeCompanyPosition { get; set; }
+
+
+    }
+}
