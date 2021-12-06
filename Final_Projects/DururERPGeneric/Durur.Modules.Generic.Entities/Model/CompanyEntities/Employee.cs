@@ -10,15 +10,11 @@ namespace Durur.Modules.Generic.Entities.Model
     {
         public int Employee_ID { get; set; }
 
-
         public string FirstName { get; set; }
-
 
         public string LastName { get; set; }
 
-
         public string EMail { get; set; }
-
 
         public string Phone_Number { get; set; }
 

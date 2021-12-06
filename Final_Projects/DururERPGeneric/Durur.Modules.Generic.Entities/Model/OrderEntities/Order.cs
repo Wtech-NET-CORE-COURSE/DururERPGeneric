@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Durur.Modules.Generic.Entities.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -17,9 +18,6 @@ namespace Durur.Modules.Generic.Entities.Model
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Order_ID { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime Order_Date { get; set; }
 
         [Column(TypeName = "money")]
         public decimal Order_Total { get; set; }

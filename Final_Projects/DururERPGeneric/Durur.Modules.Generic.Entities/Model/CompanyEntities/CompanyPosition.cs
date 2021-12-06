@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Durur.Modules.Generic.Entities.Model
 {
-    public class CompanyPosition : DateLogEntity
+    public class CompanyPosition
     {
 
         public int Company_Position_ID { get; set; }

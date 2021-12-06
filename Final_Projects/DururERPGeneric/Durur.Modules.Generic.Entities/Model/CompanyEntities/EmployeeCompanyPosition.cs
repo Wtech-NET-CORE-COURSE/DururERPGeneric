@@ -19,7 +19,6 @@ namespace Durur.Modules.Generic.Entities.Model
 
         [Column(Order = 0), Key, ForeignKey("Department")]
         public int Department_ID { get; set; }
-
         [Column(Order = 1), Key, ForeignKey("Position")]
         public int Position_ID { get; set; }
         [Column(Order = 2), Key, ForeignKey("Employee")]

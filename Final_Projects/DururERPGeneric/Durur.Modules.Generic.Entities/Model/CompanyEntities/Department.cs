@@ -14,7 +14,7 @@ namespace Durur.Modules.Generic.Entities.Model
         
         public Location Location { get; set; }
 
-        public EmployeeCompanyPosition EmployeePositions { get; set; }
+        public EmployeeCompanyPosition EmployeePosition { get; set; }
 
 
     }

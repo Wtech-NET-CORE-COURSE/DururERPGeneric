@@ -15,11 +15,11 @@ namespace Durur.Modules.Generic.Entities.Model
         [Column(Order = 1), Key, ForeignKey("Product")]
         public int Product_ID { get; set; }
 
+        public int QuantityOnHand { get; set; }
+
         public Warehouse Warehouse { get; set; }
 
         public Product Product { get; set; }
-
-        public int QuantityOnHand { get; set; }
 
     }
 }
