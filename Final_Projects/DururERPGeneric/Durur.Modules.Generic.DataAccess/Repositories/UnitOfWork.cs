@@ -16,39 +16,39 @@ namespace Durur.Modules.Generic.DataAccess.Repositories
             
         }
 
-        public IJobRepository Job => throw new NotImplementedException();
+        public IJobRepository Jobs => throw new NotImplementedException();
 
-        public ICompanyPositionRepository CompanyPosition => throw new NotImplementedException();
+        public ICompanyPositionRepository CompanyPositions => throw new NotImplementedException();
 
-        public IDepartmentRepository Department => throw new NotImplementedException();
+        public IDepartmentRepository Departments => throw new NotImplementedException();
 
-        public IEmployeeRepository Employee => throw new NotImplementedException();
+        public IEmployeeRepository Employees => throw new NotImplementedException();
 
-        public IEmployeeCompanyPositionRepository EmployeeCompanyPositionRepository => throw new NotImplementedException();
+        public IEmployeeCompanyPositionRepository EmployeeCompanyPositions => throw new NotImplementedException();
 
-        public IOrderStatusRepository OrderStatus => throw new NotImplementedException();
+        public IOrderStatusRepository OrderStatuses => throw new NotImplementedException();
 
-        public IOrderRepository Order => throw new NotImplementedException();
+        public IOrderRepository Orders => throw new NotImplementedException();
 
-        public IOrderedItemRepository OrderedItem => throw new NotImplementedException();
+        public IOrderedItemRepository OrderedItems => throw new NotImplementedException();
 
-        public ISupplierRepository Supplier => throw new NotImplementedException();
+        public ISupplierRepository Suppliers => throw new NotImplementedException();
 
-        public IProductRepository Product => throw new NotImplementedException();
+        public IProductRepository Products => throw new NotImplementedException();
 
-        public IWarehouseRepository Warehouse => throw new NotImplementedException();
+        public IWarehouseRepository Warehouses => throw new NotImplementedException();
 
-        public IInventoryRepository Inventory => throw new NotImplementedException();
+        public IInventoryRepository Inventories => throw new NotImplementedException();
 
-        public IUserRepository User => throw new NotImplementedException();
+        public IUserRepository Users => throw new NotImplementedException();
 
-        public ICustomerAddressRepository CustomerAddress => throw new NotImplementedException();
+        public ICustomerAddressRepository CustomerAddresses => throw new NotImplementedException();
 
-        public ICustomerRepository Customer => throw new NotImplementedException();
+        public ICustomerRepository Customers => throw new NotImplementedException();
 
-        public ICountryRepository Country => throw new NotImplementedException();
+        public ICountryRepository Countries => throw new NotImplementedException();
 
-        public ILocationRepository Location => throw new NotImplementedException();
+        public ILocationRepository Locations => throw new NotImplementedException();
 
         public async Task<int> CommitAsync()
         {

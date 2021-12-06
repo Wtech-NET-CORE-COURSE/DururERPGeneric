@@ -59,7 +59,7 @@ namespace Durur.Modules.Generic.DataAccess.Repositories
             Context.Set<TEntity>().RemoveRange(entities);
         }
 
-        public async Task<TEntity> SingleorDefaultAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }

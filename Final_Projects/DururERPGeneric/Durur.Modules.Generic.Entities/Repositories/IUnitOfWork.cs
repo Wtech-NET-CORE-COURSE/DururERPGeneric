@@ -7,31 +7,31 @@ namespace Durur.Modules.Generic.Entities.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        IJobRepository Job { get; }
-        ICompanyPositionRepository CompanyPosition { get; }
-        IDepartmentRepository Department { get; }
-        IEmployeeRepository Employee { get; }
-        IEmployeeCompanyPositionRepository EmployeeCompanyPositionRepository { get; }
+        IJobRepository Jobs { get; }
+        ICompanyPositionRepository CompanyPositions { get; }
+        IDepartmentRepository Departments { get; }
+        IEmployeeRepository Employees { get; }
+        IEmployeeCompanyPositionRepository EmployeeCompanyPositions { get; }
 
 
-        IOrderStatusRepository OrderStatus { get; }
-        IOrderRepository Order { get; }
-        IOrderedItemRepository OrderedItem { get; }
+        IOrderStatusRepository OrderStatuses { get; }
+        IOrderRepository Orders { get; }
+        IOrderedItemRepository OrderedItems { get; }
 
 
-        ISupplierRepository Supplier { get; }
-        IProductRepository Product { get; }
-        IWarehouseRepository Warehouse { get; }
-        IInventoryRepository Inventory { get; }
+        ISupplierRepository Suppliers { get; }
+        IProductRepository Products { get; }
+        IWarehouseRepository Warehouses { get; }
+        IInventoryRepository Inventories { get; }
 
 
-        IUserRepository User { get; }
-        ICustomerAddressRepository CustomerAddress { get; }
-        ICustomerRepository Customer { get; }
+        IUserRepository Users { get; }
+        ICustomerAddressRepository CustomerAddresses { get; }
+        ICustomerRepository Customers { get; }
 
 
-        ICountryRepository Country { get; }
-        ILocationRepository Location { get; }
+        ICountryRepository Countries { get; }
+        ILocationRepository Locations { get; }
 
 
         Task<int> CommitAsync();
