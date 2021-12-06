@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Durur.Modules.Generic.Entities\Durur.Modules.Generic.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Concrete\CompanyServices\" />
+    <Folder Include="Concrete\OrderServices\" />
+    <Folder Include="Concrete\StockServices\" />
+    <Folder Include="Concrete\UserServices\" />
+  </ItemGroup>
+
+</Project>

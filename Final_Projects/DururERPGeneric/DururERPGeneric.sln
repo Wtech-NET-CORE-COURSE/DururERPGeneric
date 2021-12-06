@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Durur.Modules.Generic.Entities", "Durur.Modules.Generic.Entities\Durur.Modules.Generic.Entities.csproj", "{060B2EED-C020-442E-A2D1-859E125A2FD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Durur.Modules.Generic.Entities", "Durur.Modules.Generic.Entities\Durur.Modules.Generic.Entities.csproj", "{060B2EED-C020-442E-A2D1-859E125A2FD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Durur.Modules.Generic.DataAccess", "Durur.Modules.Generic.DataAccess\Durur.Modules.Generic.DataAccess.csproj", "{36556186-620D-4F76-841D-263CAF1D0D4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Durur.Modules.Generic.DataAccess", "Durur.Modules.Generic.DataAccess\Durur.Modules.Generic.DataAccess.csproj", "{36556186-620D-4F76-841D-263CAF1D0D4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Durur.Modules.Generic.Business", "Durur.Modules.Generic.Business\Durur.Modules.Generic.Business.csproj", "{27FD2110-0171-4C31-9E31-63B982D446A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{36556186-620D-4F76-841D-263CAF1D0D4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36556186-620D-4F76-841D-263CAF1D0D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36556186-620D-4F76-841D-263CAF1D0D4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27FD2110-0171-4C31-9E31-63B982D446A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27FD2110-0171-4C31-9E31-63B982D446A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27FD2110-0171-4C31-9E31-63B982D446A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27FD2110-0171-4C31-9E31-63B982D446A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
