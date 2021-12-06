@@ -20,8 +20,6 @@ namespace Durur.Modules.Generic.Entities.Repositories
 
         Task AddRangeAsync(IEnumerable<TEntity> entities);
 
-        TEntity Update(TEntity entityToUpdate,TEntity entity);
-
         void Remove(int id);
 
         void Remove(TEntity entity);

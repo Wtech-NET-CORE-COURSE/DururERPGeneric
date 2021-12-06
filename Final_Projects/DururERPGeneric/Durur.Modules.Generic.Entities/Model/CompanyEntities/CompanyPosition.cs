@@ -8,9 +8,9 @@ namespace Durur.Modules.Generic.Entities.Model
 {
     public class CompanyPosition
     {
-
+        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Company_Position_ID { get; set; }
-
+        [StringLength(30)]
         public string Company_Position_Name { get; set; }
 
         public string Company_Position_Description { get; set; }

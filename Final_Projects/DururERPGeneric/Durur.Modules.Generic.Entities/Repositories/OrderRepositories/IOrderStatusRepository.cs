@@ -8,6 +8,5 @@ namespace Durur.Modules.Generic.Entities.Repositories
 {
     public interface IOrderStatusRepository : IRepository<OrderStatus>
     {
-        Task<IEnumerable<OrderStatus>> GetOrderStatusesAsync();
     }
 }

@@ -8,7 +8,5 @@ namespace Durur.Modules.Generic.Entities.Repositories
 {
     public interface IProductRepository : IRepository<Product>
     {
-        Task<IEnumerable<Product>> GetProductsAsync();
-
     }
 }

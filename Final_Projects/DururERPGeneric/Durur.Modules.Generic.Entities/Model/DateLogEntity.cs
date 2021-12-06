@@ -6,9 +6,9 @@ namespace Durur.Modules.Generic.Entities.Model
 {
     public class DateLogEntity
     {
-        public DateTime CreateDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
-        public DateTime LastUpdateDate { get; set; }
+        public DateTime LastUpdatedDate { get; set; }
 
     }
 }
