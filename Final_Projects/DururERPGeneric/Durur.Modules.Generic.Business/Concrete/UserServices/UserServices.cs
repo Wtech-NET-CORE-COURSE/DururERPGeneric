@@ -1,5 +1,6 @@
 ﻿using Durur.Modules.Business.Abstract;
 using Durur.Modules.Generic.Entities.Model;
+using Durur.Modules.Generic.Entities.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,13 @@ namespace Durur.Modules.Generic.Business.Concrete
 {
     public class UserServices : IUserServices
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public UserServices(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public Task AddUserAsync(User user)
         {
             throw new NotImplementedException();
