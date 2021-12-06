@@ -8,11 +8,4 @@
     <ProjectReference Include="..\Durur.Modules.Generic.Entities\Durur.Modules.Generic.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Concrete\CompanyServices\" />
-    <Folder Include="Concrete\OrderServices\" />
-    <Folder Include="Concrete\StockServices\" />
-    <Folder Include="Concrete\UserServices\" />
-  </ItemGroup>
-
 </Project>
