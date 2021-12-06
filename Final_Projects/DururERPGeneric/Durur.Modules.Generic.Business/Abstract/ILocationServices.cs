@@ -10,12 +10,13 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<Location>> GetLocationsAsync();
 
-        Location GetLocationByID(int id);
+        Task<Location> GetLocationByIDAsync(int id);
 
-        void AddLocation(Location location);
+        Task AddLocationAsync(Location location);
 
-        Location UpdateLocation(Location location);
+        Location UpdateLocation(Location locationToUpdate,Location location);
 
-        void DeleteLocation(int id);
+        void RemoveLocation(int id);
+        void RemoveLocation(Location location);
     }
 }

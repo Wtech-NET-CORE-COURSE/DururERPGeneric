@@ -10,12 +10,13 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<Country>> GetCountriesAsync();
 
-        Country GetCountryByID(int id);
+        Task<Country> GetCountryByIDAsync(int id);
 
-        void AddCountry(Country country);
+        Task AddCountryAsync(Country country);
 
-        Country UpdateCountry(Country country);
+        Country UpdateCountry(Country countryToUpdate, Country country);
 
-        void DeleteCountry(int id);
+        void RemoveCountry(int id);
+        void RemoveCountry(Country country);
     }
 }

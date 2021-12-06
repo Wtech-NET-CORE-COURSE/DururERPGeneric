@@ -10,12 +10,13 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<Warehouse>> GetWarehousesAsync();
 
-        Warehouse GetWarehouseByID(int id);
+        Task<Warehouse> GetWarehouseByIDAsync(int id);
 
-        void AddWarehouse(Warehouse warehouse);
+        Task AddWarehouseAsync(Warehouse warehouse);
 
-        Warehouse UpdateWarehouse(Warehouse warehouse);
+        Warehouse UpdateWarehouse(Warehouse warehouseToUpdate, Warehouse warehouse);
 
-        void DeleteWarehouse(int id);
+        void RemoveWarehouse(int id);
+        void RemoveWarehouse(Warehouse warehouse);
     }
 }

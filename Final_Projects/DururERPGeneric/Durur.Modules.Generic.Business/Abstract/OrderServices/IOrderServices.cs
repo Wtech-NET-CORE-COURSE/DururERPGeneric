@@ -10,15 +10,16 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<Order>> GetOrdersAsync();
 
-        Task<IEnumerable<Order>> GetOrdersByCustomerID(int customerId);
+        Task<IEnumerable<Order>> GetOrdersByCustomerIDAsync(int customerId);
 
-        Order GetOrderById(int id);
+        Task<Order> GetOrderByIDAsync(int id);
 
-        void AddOrder(Order order);
+        Task AddOrderAsync(Order order);
 
-        Order UpdateOrder(Order order);
+        Order UpdateOrder(Order orderToUpdate,Order order);
 
-        void DeleteOrder(int id);
+        void RemoveOrder(int id);
+        void RemoveOrder(Order order);
 
     }
 }

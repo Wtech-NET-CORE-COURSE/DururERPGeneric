@@ -8,7 +8,7 @@ namespace Durur.Modules.Generic.Entities.Model
     {
         public DateTime CreatedDate { get; set; }
 
-        public DateTime LastUpdatedDate { get; set; }
+        public DateTime LastModifiedDate { get; set; }
 
     }
 }

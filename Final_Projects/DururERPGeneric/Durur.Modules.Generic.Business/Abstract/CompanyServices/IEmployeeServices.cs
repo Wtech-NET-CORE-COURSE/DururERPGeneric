@@ -10,12 +10,18 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<Employee>> GetEmployeesAsync();
 
-        Employee GetEmployeeByID(int id);
+        Task<Employee> GetEmployeeByIDAsync(int id);
 
-        void AddEmployee(Employee employee);
+        Task AddEmployeeAsync(Employee employee);
 
-        Employee UpdateEmployee(Employee employee);
+        Task AddEmployeeRangeAsync(IEnumerable<Employee> employees);
 
-        void DeleteEmployee(int id);
+        Employee UpdateEmployee(Employee employeeToUpdate,Employee employee);
+
+        void RemoveEmployee(int id);
+
+        void RemoveEmployee(Employee employee);
+
+        void RemoveEmployeeRange(IEnumerable<Employee> employees);
     }
 }

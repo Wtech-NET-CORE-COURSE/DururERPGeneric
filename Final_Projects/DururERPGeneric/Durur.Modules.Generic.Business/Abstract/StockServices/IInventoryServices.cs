@@ -10,14 +10,14 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<Inventory>> GetInventoriesAsync();
 
-        Task<IEnumerable<Inventory>> GetInventoryByWarehouseID(int warehouseID);
+        Task<IEnumerable<Inventory>> GetInventoryByWarehouseIDAsync(int warehouseID);
 
-        Task<IEnumerable<Inventory>> GetInventoryByProductID(int productID);
+        Task<IEnumerable<Inventory>> GetInventoryByProductIDAsync(int productID);
 
-        void AddInventory(Inventory inventory);
+        Task AddInventoryAsync(Inventory inventory);
 
-        Inventory UpdateInventory(Inventory inventory);
+        Inventory UpdateInventory(Inventory inventoryToUpdate,Inventory inventory);
 
-        void DeleteInventory(Inventory inventory);
+        void RemoveInventory(Inventory inventory);
     }
 }

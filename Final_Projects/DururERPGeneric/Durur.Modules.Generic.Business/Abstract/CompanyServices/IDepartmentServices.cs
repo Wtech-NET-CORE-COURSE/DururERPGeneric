@@ -10,16 +10,21 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<Department>> GetDepartmentsAsync();
 
-        Department GetDepartmentByID(int id);
+        Task<Department> GetDepartmentByIDAsync(int id);
 
         Task<IEnumerable<Department>> GetDepartmentsByLocationIDAsync(int locationId);
 
-        Department GetDepartmentByName(string name);
+        Task<Department> GetDepartmentByName(string name);
 
-        void AddDepartment(Department department);
+        Task AddDepartmentAsync(Department department);
 
-        Department UpdateDepartment(Department department);
+        Task AddDepartmentRangeAsync(IEnumerable<Department> departments);
 
-        void DeleteDepartment(int id);
+        Department UpdateDepartment(Department departmentToUpdate, Department department);
+
+        void RemoveDepartment(int id);
+
+        void RemoveDepartment(Department department);
+
     }
 }

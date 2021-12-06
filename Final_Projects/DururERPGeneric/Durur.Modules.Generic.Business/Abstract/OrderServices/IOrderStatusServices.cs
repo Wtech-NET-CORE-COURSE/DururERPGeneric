@@ -10,12 +10,13 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<OrderStatus>> GetOrderStatusesAsync();
 
-        OrderStatus GetOrderStatusByID(int id);
+        Task<OrderStatus> GetOrderStatusByIDAsync(int id);
 
-        void AddOrderStatus(OrderStatus orderStatus);
+        Task AddOrderStatusAsync(OrderStatus orderStatus);
 
-        OrderStatus UpdateOrderStatus(OrderStatus orderStatus);
+        OrderStatus UpdateOrderStatus(OrderStatus orderStatusToUpdate,OrderStatus orderStatus);
 
-        void DeleteOrderStatus(int id);
+        void RemoveOrderStatus(int id);
+        void RemoveOrderStatus(OrderStatus orderStatus);
     }
 }

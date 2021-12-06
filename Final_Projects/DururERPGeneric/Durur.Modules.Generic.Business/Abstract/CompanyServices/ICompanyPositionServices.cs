@@ -1,6 +1,7 @@
 ﻿using Durur.Modules.Generic.Entities.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,12 +11,15 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<CompanyPosition>> GetCompanyPositionsAsync();
 
-        CompanyPosition GetCompanyPositionByID(int id);
+        Task<CompanyPosition> GetCompanyPositionByIDAsync(int id);
 
-        void AddCompanyPosition(CompanyPosition companyPosition);
+        Task AddCompanyPositionAsync(CompanyPosition companyPosition);
 
-        CompanyPosition UpdateCompanyPosition(CompanyPosition companyPosition);
 
-        void DeleteCompanyPosition(int id);
+        CompanyPosition UpdateCompanyPosition(CompanyPosition companyPositionToUpdated, CompanyPosition companyPosition);
+
+        void RemoveCompanyPosition(int id);
+
+        void RemoveCompanyPosition(CompanyPosition companyPosition);
     }
 }

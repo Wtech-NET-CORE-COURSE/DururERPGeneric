@@ -12,14 +12,16 @@ namespace Durur.Modules.Business.Abstract
 
         Task<IEnumerable<OrderedItem>> GetOrderedItemsByOrderIDAsync(int id);
 
-        OrderedItem GetOrderedItemByID(int id);
+        Task<OrderedItem> GetOrderedItemByIDAsync(int id);
 
-        void AddOrderedItem(OrderedItem orderedItem);
+        Task AddOrderedItemAsync(OrderedItem orderedItem);
 
-        void AddRangeOrderedItem(IEnumerable<OrderedItem> orderedItems);
+        Task AddOrderedItemRangeAsync(IEnumerable<OrderedItem> orderedItems);
 
-        OrderedItem UpdateOrderedItem(OrderedItem orderedItem);
+        OrderedItem UpdateOrderedItem(OrderedItem orderedItemToUpdate,OrderedItem orderedItem);
 
-        void DeleteOrderedItem(int id);
+        void RemoveOrderedItem(int id);
+        void RemoveOrderedItem(OrderedItem orderedItem);
+        void RemoveOrderedItemRange(IEnumerable<OrderedItem> orderedItems);
     }
 }

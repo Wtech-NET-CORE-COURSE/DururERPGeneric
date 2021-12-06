@@ -10,12 +10,14 @@ namespace Durur.Modules.Business.Abstract
     {
         Task<IEnumerable<Job>> GetJobsAsync();
 
-        Job GetJobByID(int id);
+        Task<Job> GetJobByID(int id);
 
-        void AddJob(Job job);
+        Task AddJobAsync(Job job);
 
-        void DeleteJob(int id);
+        Job UpdateJob(Job jobToUpdate,Job job);
 
-        Job UpdateJob(Job job);
+        void RemoveJob(int id);
+
+        void RemoveJob(Job job);
     }
 }
