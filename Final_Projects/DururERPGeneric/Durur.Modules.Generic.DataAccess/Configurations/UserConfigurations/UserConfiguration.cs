@@ -11,7 +11,7 @@ namespace Durur.Modules.Generic.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

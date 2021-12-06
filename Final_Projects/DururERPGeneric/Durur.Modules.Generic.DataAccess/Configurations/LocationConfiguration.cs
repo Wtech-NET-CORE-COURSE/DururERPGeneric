@@ -11,7 +11,11 @@ namespace Durur.Modules.Generic.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Location> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(w=>w.Location_ID);
+            builder.Property(w=>w.Location_ID).UseIdentityColumn();
+
+            builder.ToTable("Locations");
+            //throw new NotImplementedException();
         }
     }
 }

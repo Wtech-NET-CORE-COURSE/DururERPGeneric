@@ -11,13 +11,6 @@ namespace Durur.Modules.Generic.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<CompanyPosition> builder)
         {
-            builder.HasKey(w=>w.Company_Position_ID);
-            builder.Property(w => w.Company_Position_ID).UseIdentityColumn();
-            builder.HasOne(w => w.EmployeeCompanyPosition).WithMany(w=>w.Positions);
-
-            builder.Property(w => w.Company_Position_Name).HasMaxLength(30);
-
-            builder.ToTable("CompanyPositions");
         }
     }
 }

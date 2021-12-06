@@ -11,7 +11,9 @@ namespace Durur.Modules.Generic.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Inventory> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(i => new { i.Warehouse_ID, i.Product_ID });
+            builder.ToTable("Inventories");
+            //throw new NotImplementedException();
         }
     }
 }

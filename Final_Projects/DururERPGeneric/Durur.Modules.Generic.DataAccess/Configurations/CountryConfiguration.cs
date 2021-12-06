@@ -11,7 +11,11 @@ namespace Durur.Modules.Generic.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Country> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(w=>w.Country_ID);
+            builder.Property(w => w.Country_ID).UseIdentityColumn();
+
+            builder.ToTable("Countries");
+            //throw new NotImplementedException();
         }
     }
 }

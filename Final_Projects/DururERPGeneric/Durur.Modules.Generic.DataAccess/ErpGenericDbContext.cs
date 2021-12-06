@@ -43,16 +43,25 @@ namespace Durur.Modules.Generic.DataAccess
 
         public DbSet<EmployeeCompanyPosition> Employee_CompanyPositions { get; set; }
 
-       public ErpGenericDbContext(DbContextOptions<ErpGenericDbContext> options)
-           : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Server=DESKTOP-5HRP16U;Database=DururERP_db;uid=DefaultAppUser;pwd=App123456");
+            /*string _sql = MigrationUtility.ReadSql(typeof(MigrationUtility), "Countries.sql");
+            migrationBuilder.Sql(_sql);*/
         }
+
+
+        //public ErpGenericDbContext(DbContextOptions<ErpGenericDbContext> options)
+        //    : base(options)
+        // {
+        // }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-        
+
 
     }
 }

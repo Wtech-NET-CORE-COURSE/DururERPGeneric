@@ -15,11 +15,11 @@ namespace Durur.Modules.Generic.DataAccess.Configurations
             builder.Property(w=>w.Department_ID).UseIdentityColumn();
 
             builder.Property(w => w.Department_Name).HasMaxLength(40).IsRequired();
-            
 
-            builder.HasOne(w=>w.EmployeePosition).WithMany(w=>w.Departments);
 
-            builder.HasOne(w=>w.Location).WithMany(w=>w.Departments);
+            //builder.HasOne(w => w.EmployeePosition).WithMany(w => w.Departments);
+
+            //builder.HasOne(w=>w.Location).WithMany(w=>w.Departments);
 
             builder.ToTable("Departments");
         }

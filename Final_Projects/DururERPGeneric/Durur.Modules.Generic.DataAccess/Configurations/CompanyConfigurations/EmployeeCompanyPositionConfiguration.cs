@@ -13,15 +13,15 @@ namespace Durur.Modules.Generic.DataAccess.Configurations
         {
             builder.HasKey(w => new { w.Department_ID, w.Position_ID, w.Employee_ID });
 
-            builder.Property(w=>w.Department_ID).
+            //builder.HasMany(w => w.Departments).WithOne(w => w.EmployeePosition);
+
+            //builder.HasMany(w => w.Positions).WithOne(w => w.EmployeeCompanyPosition);
+
+            //builder.HasMany(w => w.Employees).WithOne(w => w.Position);
+            //builder.Property(w => w.CreatedDate).HasAnnotation("Order", 5);
+            //builder.Property(w=>w.LastUpdatedDate).HasAnnotation("Order",6);
 
 
-
-            builder.HasMany(w => w.Departments).WithOne(w=>w.EmployeePosition).HasForeignKey("Department_ID");
-
-            builder.HasMany(w => w.Positions).WithOne(w => w.EmployeeCompanyPosition).HasForeignKey("Position_ID");
-
-            builder.HasMany(w => w.Employees).WithOne(w => w.Position).HasForeignKey("Employee_ID");
 
             builder.ToTable("Employee_CompanyPositions");
         }
