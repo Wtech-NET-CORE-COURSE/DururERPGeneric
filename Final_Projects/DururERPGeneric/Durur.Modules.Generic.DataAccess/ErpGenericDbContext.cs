@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Durur.Modules.Generic.DataAccess
@@ -38,9 +39,9 @@ namespace Durur.Modules.Generic.DataAccess
 
         public DbSet<OrderedItem> Ordered_Items { get; set; }
 
-        public DbSet<CompanyPosition> Company_Positions { get; set; }
+        public DbSet<CompanyPosition> CompanyPositions { get; set; }
 
-        public DbSet<EmployeeCompanyPosition> Employee_Company_Positions { get; set; }
+        public DbSet<EmployeeCompanyPosition> Employee_CompanyPositions { get; set; }
 
        public ErpGenericDbContext(DbContextOptions<ErpGenericDbContext> options)
            : base(options)
@@ -49,6 +50,7 @@ namespace Durur.Modules.Generic.DataAccess
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
         
 
