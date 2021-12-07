@@ -14,7 +14,7 @@ namespace Durur.Modules.Generic.Entities.Repositories
 
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
-        Task<TEntity> SingleorDefaultAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
 
         Task AddAsync(TEntity entity);
 
