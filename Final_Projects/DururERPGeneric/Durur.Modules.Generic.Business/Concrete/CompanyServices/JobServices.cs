@@ -17,9 +17,10 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddJobAsync(Job job)
+        public async Task AddJobAsync(Job job)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Jobs.AddAsync(job);
+            await _unitOfWork.CommitAsync();
         }
 
         public Task<Job> GetJobByID(int id)
@@ -27,9 +28,10 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Job>> GetJobsAsync()
+        public async Task<IEnumerable<Job>> GetJobsAsync()
         {
-            throw new NotImplementedException();
+            var jobs = await _unitOfWork.Jobs.GetAllAsync();
+            return jobs;
         }
 
         public void RemoveJob(int id)

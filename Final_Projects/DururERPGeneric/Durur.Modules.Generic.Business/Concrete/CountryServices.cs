@@ -22,9 +22,10 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Country>> GetCountriesAsync()
+        public async Task<IEnumerable<Country>> GetCountriesAsync()
         {
-            throw new NotImplementedException();
+            var countries = await _unitOfWork.Countries.GetAllAsync();
+            return countries;
         }
 
         public Task<Country> GetCountryByIDAsync(int id)
