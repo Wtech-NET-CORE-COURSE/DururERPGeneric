@@ -9,46 +9,64 @@ namespace Durur.Modules.Generic.DataAccess.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ErpGenericDbContext _context;
+        private JobRepository _jobRepository;
+        private CompanyPositionRepository _companyPositionRepository;
+        private DepartmentRepository _departmentRepository;
+        private EmployeeRepository _employeeRepository;
+        private EmployeeCompanyPositionRepository _employeeCompanyPositionRepository;
+        private OrderStatusRepository _orderStatusRepository;
+        private OrderRepository _orderRepository;
+        private OrderedItemRepository _orderedItemRepository;
+        private SupplierRepository _supplierRepository;
+        private ProductRepository _productRepository;
+        private WarehouseRepository _warehouseRepository;
+        private InventoryRepository _inventoryRepository;
+        private UserRepository _userRepository;
+        private CustomerAddressRepository _customerAddressRepository;
+        private CustomerRepository _customerRepository;
+        private CountryRepository _countryRepository;
+        private LocationRepository _locationRepository;
+
+
 
         public UnitOfWork(ErpGenericDbContext context)
         {
             this._context = context;
-            
         }
 
-        public IJobRepository Jobs => throw new NotImplementedException();
+        public IJobRepository Jobs => _jobRepository = _jobRepository ?? new JobRepository(_context);
 
-        public ICompanyPositionRepository CompanyPositions => throw new NotImplementedException();
+        public ICompanyPositionRepository CompanyPositions => _companyPositionRepository = _companyPositionRepository ?? new CompanyPositionRepository(_context);
 
-        public IDepartmentRepository Departments => throw new NotImplementedException();
+        public IDepartmentRepository Departments => _departmentRepository = _departmentRepository ?? new DepartmentRepository(_context);
 
-        public IEmployeeRepository Employees => throw new NotImplementedException();
+        public IEmployeeRepository Employees => _employeeRepository = _employeeRepository ?? new EmployeeRepository(_context);
 
-        public IEmployeeCompanyPositionRepository EmployeeCompanyPositions => throw new NotImplementedException();
+        public IEmployeeCompanyPositionRepository EmployeeCompanyPositions => _employeeCompanyPositionRepository = _employeeCompanyPositionRepository ?? new EmployeeCompanyPositionRepository(_context);
 
-        public IOrderStatusRepository OrderStatuses => throw new NotImplementedException();
+        public IOrderStatusRepository OrderStatuses => _orderStatusRepository = _orderStatusRepository ?? new OrderStatusRepository(_context);
 
-        public IOrderRepository Orders => throw new NotImplementedException();
+        public IOrderRepository Orders => _orderRepository = _orderRepository ?? new OrderRepository(_context);
 
-        public IOrderedItemRepository OrderedItems => throw new NotImplementedException();
+        public IOrderedItemRepository OrderedItems => _orderedItemRepository = _orderedItemRepository ?? new OrderedItemRepository(_context);
 
-        public ISupplierRepository Suppliers => throw new NotImplementedException();
+        public ISupplierRepository Suppliers => _supplierRepository = _supplierRepository ?? new SupplierRepository(_context);
 
-        public IProductRepository Products => throw new NotImplementedException();
+        public IProductRepository Products => _productRepository = _productRepository ?? new ProductRepository(_context);
 
-        public IWarehouseRepository Warehouses => throw new NotImplementedException();
+        public IWarehouseRepository Warehouses => _warehouseRepository = _warehouseRepository ?? new WarehouseRepository(_context);
 
-        public IInventoryRepository Inventories => throw new NotImplementedException();
+        public IInventoryRepository Inventories => _inventoryRepository = _inventoryRepository ?? new InventoryRepository(_context);
 
-        public IUserRepository Users => throw new NotImplementedException();
+        public IUserRepository Users => _userRepository = _userRepository ?? new UserRepository(_context);
 
-        public ICustomerAddressRepository CustomerAddresses => throw new NotImplementedException();
+        public ICustomerAddressRepository CustomerAddresses => _customerAddressRepository = _customerAddressRepository ?? new CustomerAddressRepository(_context);
 
-        public ICustomerRepository Customers => throw new NotImplementedException();
+        public ICustomerRepository Customers => _customerRepository = _customerRepository ?? new CustomerRepository(_context);
 
-        public ICountryRepository Countries => throw new NotImplementedException();
+        public ICountryRepository Countries => _countryRepository = _countryRepository ?? new CountryRepository(_context);
 
-        public ILocationRepository Locations => throw new NotImplementedException();
+        public ILocationRepository Locations => _locationRepository = _locationRepository ?? new LocationRepository(_context);
 
         public async Task<int> CommitAsync()
         {

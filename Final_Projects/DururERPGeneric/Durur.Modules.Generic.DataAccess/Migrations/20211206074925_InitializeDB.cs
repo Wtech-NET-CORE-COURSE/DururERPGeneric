@@ -514,8 +514,8 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                 table: "Warehouses",
                 column: "Location_ID");
 
-            string _sql = MigrationUtility.ReadSql(typeof(MigrationUtility), "Countries.sql");
-            migrationBuilder.Sql(_sql);
+            //string _sql = MigrationUtility.ReadSql(typeof(MigrationUtility), "Countries.sql");
+            //migrationBuilder.Sql(_sql);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
