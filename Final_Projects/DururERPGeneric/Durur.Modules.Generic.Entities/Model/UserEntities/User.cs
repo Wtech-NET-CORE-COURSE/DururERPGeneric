@@ -23,6 +23,12 @@ namespace Durur.Modules.Generic.Entities.Model
         [Required]
         public string Mail { get; set; }
 
+        public bool IsActive { get; set; }
+
+        public string RefreshToken { get; set; }
+
+        public DateTime? RefreshTokenEndTime { get; set; }
+
         public Customer Customer { get; set; }
 
     }
