@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Durur.Modules.Generic.DataA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Durur.Modules.Generic.Business", "Durur.Modules.Generic.Business\Durur.Modules.Generic.Business.csproj", "{27FD2110-0171-4C31-9E31-63B982D446A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Durur.Erp.Api", "Durur.Erp.Api\Durur.Erp.Api.csproj", "{8945C74D-B5D3-435C-A0BB-D7094F5C0794}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Durur.Erp.Api", "Durur.Erp.Api\Durur.Erp.Api.csproj", "{8945C74D-B5D3-435C-A0BB-D7094F5C0794}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
