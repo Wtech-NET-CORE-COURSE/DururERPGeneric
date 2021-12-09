@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +16,11 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private IProductServices _productServices;
+        private readonly IProductServices _productServices;
 
-        public ProductController()
+        public ProductController(IProductServices productServices)
         {
-            _productServices = new ProductServices();
+            _productServices = productServices;
         }
 
         [HttpGet]
@@ -34,30 +33,30 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
-            var product = _productServices.GetProductByID(id);
+            var product = _productServices.GetProductByIDAsync(id);
             return Ok(product);
         }
 
         [HttpPost]
         public IActionResult AddProduct([FromBody] Product product)
         {
-            _productServices.AddProduct(product);
+            _productServices.AddProductAsync(product);
             return Ok();
         }
 
         [HttpPut]
         public IActionResult UpdateProduct([FromBody] Product product)
         {
-            _productServices.UpdateProduct(product);
+            _productServices.UpdateProduct(product,product);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {
-            if (_productServices.GetProductByID(id) != null)
+            if (_productServices.GetProductByIDAsync(id) != null)
             {
-                _productServices.DeleteProduct(id);
+                _productServices.RemoveProduct(id);
                 return Ok();
             }
             return NotFound();

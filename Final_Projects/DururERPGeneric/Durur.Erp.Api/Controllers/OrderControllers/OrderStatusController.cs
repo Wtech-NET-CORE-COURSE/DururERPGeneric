@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +16,11 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class OrderStatusController : ControllerBase
     {
-        private IOrderStatusServices _orderStatusServices;
+        private readonly IOrderStatusServices _orderStatusServices;
 
-        public OrderStatusController()
+        public OrderStatusController(IOrderStatusServices orderStatusServices)
         {
-            _orderStatusServices = new OrderStatusServices();
+            _orderStatusServices = orderStatusServices;
         }
 
         [HttpGet]
@@ -34,30 +33,30 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
-            var status = _orderStatusServices.GetOrderStatusByID(id);
+            var status = _orderStatusServices.GetOrderStatusByIDAsync(id);
             return Ok(status);
         }
 
         [HttpPost]
         public IActionResult AddOrderStatus([FromBody]OrderStatus orderStatus)
         {
-            _orderStatusServices.AddOrderStatus(orderStatus);
+            _orderStatusServices.AddOrderStatusAsync(orderStatus);
             return Ok();
         }
 
         [HttpPut]
         public IActionResult UpdateOrderStatus([FromBody]OrderStatus orderStatus)
         {
-            _orderStatusServices.UpdateOrderStatus(orderStatus);
+            _orderStatusServices.UpdateOrderStatus(orderStatus,orderStatus);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteOrderStatus(int id)
         {
-            if (_orderStatusServices.GetOrderStatusByID(id) != null)
+            if (_orderStatusServices.GetOrderStatusByIDAsync(id) != null)
             {
-                _orderStatusServices.DeleteOrderStatus(id);
+                _orderStatusServices.RemoveOrderStatus(id);
                 return Ok();
             }
             return NotFound();

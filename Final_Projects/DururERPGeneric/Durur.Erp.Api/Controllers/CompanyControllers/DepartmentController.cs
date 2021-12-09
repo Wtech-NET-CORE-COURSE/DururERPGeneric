@@ -37,7 +37,7 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Department>> GetByID(int id)
         {
-            var department = _departmentServices.GetDepartmentByIDAsync(id);
+            var department = await _departmentServices.GetDepartmentByIDAsync(id);
             if (department != null)
                 return Ok(department);
             return NotFound();
@@ -82,9 +82,9 @@ namespace Durur.Modules.Api.Controllers
 
 
         [HttpPut]
-        public IActionResult UpdateDepartment([FromBody] Department departmentToUpdate,[FromBody] Department department)
+        public IActionResult UpdateDepartment([FromBody] Department departmentToUpdate)
         {
-            return Ok(_departmentServices.UpdateDepartment(departmentToUpdate,department));
+            return Ok(_departmentServices.UpdateDepartment(departmentToUpdate,departmentToUpdate));
         }
 
     }

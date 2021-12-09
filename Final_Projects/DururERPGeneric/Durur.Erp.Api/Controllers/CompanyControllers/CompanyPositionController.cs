@@ -87,9 +87,9 @@ namespace Durur.Modules.Api.Controllers
         /// <param name="companyPosition"></param>
         /// <returns></returns>
         [HttpPut]
-        public ActionResult UpdateCompanyPosition([FromBody] CompanyPosition companyPositionToUpdated, [FromBody] CompanyPosition companyPosition)
+        public ActionResult UpdateCompanyPosition([FromBody] CompanyPosition companyPositionToUpdated)
         {
-            return Ok(_companyPositionServices.UpdateCompanyPosition(companyPositionToUpdated, companyPosition));
+            return Ok(_companyPositionServices.UpdateCompanyPosition(companyPositionToUpdated, companyPositionToUpdated));
         }
     }
 }

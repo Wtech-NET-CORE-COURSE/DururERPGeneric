@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +16,11 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class InventoryController : ControllerBase
     {
-        private IInventoryServices _inventoryServices;
+        private readonly IInventoryServices _inventoryServices;
 
-        public InventoryController()
+        public InventoryController(IInventoryServices inventoryServices)
         {
-            _inventoryServices = new InventoryServices();
+            _inventoryServices = inventoryServices;
         }
 
         [HttpGet]
@@ -35,7 +34,7 @@ namespace Durur.Modules.Api.Controllers
         [Route("[action]/{id}")]
         public IActionResult GetByProductID(int id)
         {
-            var inventory = _inventoryServices.GetInventoryByProductID(id);
+            var inventory = _inventoryServices.GetInventoryByProductIDAsync(id);
             return Ok(inventory);
         }
 
@@ -44,21 +43,21 @@ namespace Durur.Modules.Api.Controllers
         [Route("[action]/{id}")]
         public IActionResult GetByWarehouseID(int id)
         {
-            var inventory = _inventoryServices.GetInventoryByWarehouseID(id);
+            var inventory = _inventoryServices.GetInventoryByWarehouseIDAsync(id);
             return Ok(inventory);
         }
 
         [HttpPost]
         public IActionResult AddInventory([FromBody] Inventory inventory)
         {
-            _inventoryServices.AddInventory(inventory);
+            _inventoryServices.AddInventoryAsync(inventory);
             return Ok();
         }
 
         [HttpPut]
         public IActionResult UpdateInventory([FromBody] Inventory inventory)
         {
-            _inventoryServices.UpdateInventory(inventory);
+            _inventoryServices.UpdateInventory(inventory,inventory);
             return Ok();
         }
 
@@ -67,7 +66,7 @@ namespace Durur.Modules.Api.Controllers
         {
             if (inventory != null)
             {
-                _inventoryServices.DeleteInventory(inventory);
+                _inventoryServices.RemoveInventory(inventory);
                 return Ok();
             }
             return NotFound();

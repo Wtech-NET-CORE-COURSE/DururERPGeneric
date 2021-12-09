@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,9 +18,9 @@ namespace Durur.Modules.Api.Controllers
     {
         private ILocationServices _locationServices;
 
-        public LocationController()
+        public LocationController(ILocationServices locationServices)
         {
-            _locationServices = new LocationServices();
+            _locationServices = locationServices;
         }
 
 
@@ -33,32 +32,32 @@ namespace Durur.Modules.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetByID(int id)
+        public IActionResult GetByIDAsync(int id)
         {
-            var location = _locationServices.GetLocationByID(id);
+            var location = _locationServices.GetLocationByIDAsync(id);
             return Ok(location);
         }
 
         [HttpPost]
         public IActionResult AddLocation([FromBody] Location location)
         {
-            _locationServices.AddLocation(location);
+            _locationServices.AddLocationAsync(location);
             return Ok();
         }
 
         [HttpPut]
         public IActionResult UpdateLocation([FromBody] Location location)
         {
-            _locationServices.UpdateLocation(location);
+            _locationServices.UpdateLocation(location,location);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteLocation(int id)
         {
-            if (_locationServices.GetLocationByID(id) != null)
+            if (_locationServices.GetLocationByIDAsync(id) != null)
             {
-                _locationServices.DeleteLocation(id);
+                _locationServices.RemoveLocation(id);
                 return Ok();
             }
             return NotFound();

@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,9 +21,9 @@ namespace Durur.Modules.Api.Controllers
         /// <summary>
         /// Order controller constructor
         /// </summary>
-        public OrderController()
+        public OrderController(IOrderServices orderServices)
         {
-            _orderServices = new OrderServices();
+            _orderServices = orderServices;
         }
 
         /// <summary>
@@ -45,7 +44,7 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Order order = _orderServices.GetOrderById(id);
+            var order = _orderServices.GetOrderByIDAsync(id);
             if (order != null)
                 return Ok(order);
             return NotFound();
@@ -55,7 +54,7 @@ namespace Durur.Modules.Api.Controllers
         [Route("[action]/{id}")]
         public async Task<IActionResult> GetByCustomerID(int id)
         {
-            var orders = await _orderServices.GetOrdersByCustomerID(id);
+            var orders = await _orderServices.GetOrdersByCustomerIDAsync(id);
             return Ok(orders);
         }
 
@@ -68,7 +67,7 @@ namespace Durur.Modules.Api.Controllers
         [HttpPost]
         public IActionResult AddOrder([FromBody] Order order)
         {
-            _orderServices.AddOrder(order);
+            _orderServices.AddOrderAsync(order);
             return Ok();
         }
 
@@ -76,9 +75,9 @@ namespace Durur.Modules.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteOrder(int id)
         {
-            if (_orderServices.GetOrderById(id) != null)
+            if (_orderServices.GetOrderByIDAsync(id) != null)
             {
-                _orderServices.DeleteOrder(id);
+                _orderServices.RemoveOrder(id);
                 return Ok();
             }
             return NotFound();
@@ -87,7 +86,7 @@ namespace Durur.Modules.Api.Controllers
         [HttpPut]
         public IActionResult UpdateOrder([FromBody]Order order)
         {
-            return Ok(_orderServices.UpdateOrder(order));
+            return Ok(_orderServices.UpdateOrder(order,order));
         }
 
     }

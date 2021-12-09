@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +16,11 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class OrderedItemController : ControllerBase
     {
-        private IOrderedItemServices _orderedItemServices;
+        private readonly IOrderedItemServices _orderedItemServices;
 
-        public OrderedItemController()
+        public OrderedItemController(IOrderedItemServices orderedItemServices)
         {
-            _orderedItemServices = new OrderedItemServices();
+            _orderedItemServices = orderedItemServices;
         }
 
         [HttpGet]
@@ -42,14 +41,14 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
-            var orderedItem = _orderedItemServices.GetOrderedItemByID(id);
+            var orderedItem = _orderedItemServices.GetOrderedItemByIDAsync(id);
             return Ok(orderedItem);
         }
 
         [HttpPost]
         public IActionResult AddOrderedItem([FromBody]OrderedItem orderedItem)
         {
-            _orderedItemServices.AddOrderedItem(orderedItem);
+            _orderedItemServices.AddOrderedItemAsync(orderedItem);
             return Ok();
         }
 
@@ -57,16 +56,16 @@ namespace Durur.Modules.Api.Controllers
         [Route("[action]")]
         public IActionResult AddRangeOrderedItem([FromBody]List<OrderedItem> orderedItems)
         {
-            _orderedItemServices.AddRangeOrderedItem(orderedItems);
+            _orderedItemServices.AddOrderedItemRangeAsync(orderedItems);
             return Ok();
         }
 
         [HttpDelete]
         public IActionResult DeleteOrderedItem(int id)
         {
-            if (_orderedItemServices.GetOrderedItemByID(id)!=null)
+            if (_orderedItemServices.GetOrderedItemByIDAsync(id)!=null)
             {
-                _orderedItemServices.DeleteOrderedItem(id);
+                _orderedItemServices.RemoveOrderedItem(id);
                 return Ok();
             }
             return NotFound();
@@ -75,7 +74,7 @@ namespace Durur.Modules.Api.Controllers
         [HttpPut]
         public IActionResult UpdateOrderedItem([FromBody]OrderedItem orderedItem)
         {
-            _orderedItemServices.UpdateOrderedItem(orderedItem);
+            _orderedItemServices.UpdateOrderedItem(orderedItem,orderedItem);
             return Ok();
         }
 

@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +16,11 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private IEmployeeServices _employeeServices;
+        private readonly IEmployeeServices _employeeServices;
 
-        public EmployeeController()
+        public EmployeeController(IEmployeeServices employeeServices)
         {
-            _employeeServices = new EmployeeServices();
+            _employeeServices = employeeServices;
         }
 
         [HttpGet]
@@ -35,7 +34,7 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
-            var employee = _employeeServices.GetEmployeeByID(id);
+            var employee = _employeeServices.GetEmployeeByIDAsync(id);
             if (employee != null)
                 return Ok(employee);
             return NotFound();
@@ -44,22 +43,22 @@ namespace Durur.Modules.Api.Controllers
         [HttpPost]
         public IActionResult AddEmployee([FromBody]Employee employee)
         {
-            _employeeServices.AddEmployee(employee);
+            _employeeServices.AddEmployeeAsync(employee);
             return Ok();
         }
 
         [HttpPut]
         public IActionResult UpdateEmployee([FromBody]Employee employee)
         {
-            return Ok(_employeeServices.UpdateEmployee(employee));
+            return Ok(_employeeServices.UpdateEmployee(employee,employee));
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteEmployee(int id)
         {
-            if (_employeeServices.GetEmployeeByID(id) != null)
+            if (_employeeServices.GetEmployeeByIDAsync(id) != null)
             {
-                _employeeServices.DeleteEmployee(id);
+                _employeeServices.RemoveEmployee(id);
                 return Ok();
             }
             return NotFound();

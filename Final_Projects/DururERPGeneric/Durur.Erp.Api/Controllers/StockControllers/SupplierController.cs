@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +16,11 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class SupplierController : ControllerBase
     {
-        private ISupplierServices _supplierServices;
+        private readonly ISupplierServices _supplierServices;
 
-        public SupplierController()
+        public SupplierController(ISupplierServices supplierServices)
         {
-            _supplierServices=new SupplierServices();
+            _supplierServices = supplierServices;
         }
 
         [HttpGet]
@@ -34,30 +33,30 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
-            var supplier = _supplierServices.GetSupplierByID(id);
+            var supplier = _supplierServices.GetSupplierByIDAsync(id);
             return Ok(supplier);
         }
 
         [HttpPost]
         public IActionResult AddSupplier([FromBody] Supplier supplier)
         {
-            _supplierServices.AddSupplier(supplier);
+            _supplierServices.AddSupplierAsync(supplier);
             return Ok();
         }
 
         [HttpPut]
         public IActionResult UpdateSupplier([FromBody] Supplier supplier)
         {
-            _supplierServices.UpdateSupplier(supplier);
+            _supplierServices.UpdateSupplier(supplier,supplier);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteSupplier(int id)
         {
-            if (_supplierServices.GetSupplierByID(id) != null)
+            if (_supplierServices.GetSupplierByIDAsync(id) != null)
             {
-                _supplierServices.DeleteSupplier(id);
+                _supplierServices.RemoveSupplier(id);
                 return Ok();
             }
             return NotFound();

@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,14 +16,14 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class EmployeeCompanyPositionController : ControllerBase
     {
-        private IEmployeeCompanyPositionServices _employeeCompanyPositionServices;
+        private readonly IEmployeeCompanyPositionServices _employeeCompanyPositionServices;
 
         /// <summary>
         /// Employee position controller constructor
         /// </summary>
-        public EmployeeCompanyPositionController()
+        public EmployeeCompanyPositionController(IEmployeeCompanyPositionServices employeeCompanyPositionServices)
         {
-            _employeeCompanyPositionServices = new EmployeeCompanyPositionServices();
+            _employeeCompanyPositionServices = employeeCompanyPositionServices;
         }
 
         [HttpGet]
@@ -68,7 +67,7 @@ namespace Durur.Modules.Api.Controllers
         [HttpDelete]
         public IActionResult DeletePosition([FromBody] EmployeeCompanyPosition employeeCompanyPosition)
         {
-            _employeeCompanyPositionServices.DeleteEmployeePosition(employeeCompanyPosition);
+            _employeeCompanyPositionServices.RemoveEmployeePosition(employeeCompanyPosition);
             return Ok();
         }
 

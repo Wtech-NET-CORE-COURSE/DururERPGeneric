@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,47 +16,47 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUserServices _userServices;
+        private readonly IUserServices _userServices;
 
-        public UserController()
+        public UserController(IUserServices userServices)
         {
-            _userServices = new UserServices();
+            _userServices = userServices;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<User>>> GetAllAsync()
         {
             var users = await _userServices.GetUsersAsync();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetByID(int id)
+        public async Task<ActionResult<User>> GetByID(int id)
         {
-            var user = _userServices.GetUserByID(id);
+            var user =await _userServices.GetUserByIDAsync(id);
             return Ok(user);
         }
 
         [HttpPost]
-        public IActionResult AddUser([FromBody] User user)
+        public async Task<ActionResult> AddUser([FromBody] User user)
         {
-            _userServices.AddUser(user);
+            await _userServices.AddUserAsync(user);
             return Ok();
         }
 
         [HttpPut]
         public IActionResult UpdateUser([FromBody] User user)
         {
-            _userServices.UpdateUser(user);
+            _userServices.UpdateUser(user,user);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            if (_userServices.GetUserByID(id) != null)
+            if (_userServices.GetUserByIDAsync(id) != null)
             {
-                _userServices.DeleteUser(id);
+                _userServices.RemoveUser(id);
                 return Ok();
             }
             return NotFound();

@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +16,11 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class WarehouseController : ControllerBase
     {
-        private IWarehouseServices _warehouseServices;
+        private readonly IWarehouseServices _warehouseServices;
 
-        public WarehouseController()
+        public WarehouseController(IWarehouseServices warehouseServices)
         {
-            _warehouseServices = new WarehouseServices();
+            _warehouseServices = warehouseServices;
         }
 
 
@@ -35,30 +34,30 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
-            var warehouse = _warehouseServices.GetWarehouseByID(id);
+            var warehouse = _warehouseServices.GetWarehouseByIDAsync(id);
             return Ok(warehouse);
         }
 
         [HttpPost]
         public IActionResult AddWarehouse([FromBody] Warehouse warehouse)
         {
-            _warehouseServices.AddWarehouse(warehouse);
+            _warehouseServices.AddWarehouseAsync(warehouse);
             return Ok();
         }
 
         [HttpPut]
         public IActionResult UpdateWarehouse([FromBody] Warehouse warehouse)
         {
-            _warehouseServices.UpdateWarehouse(warehouse);
+            _warehouseServices.UpdateWarehouse(warehouse,warehouse);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteWarehouse(int id)
         {
-            if (_warehouseServices.GetWarehouseByID(id) != null)
+            if (_warehouseServices.GetWarehouseByIDAsync(id) != null)
             {
-                _warehouseServices.DeleteWarehouse(id);
+                _warehouseServices.RemoveWarehouse(id);
                 return Ok();
             }
             return NotFound();

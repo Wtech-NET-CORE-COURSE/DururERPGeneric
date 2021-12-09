@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +16,11 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private ICustomerServices _customerServices;
+        private readonly ICustomerServices _customerServices;
 
-        public CustomerController()
+        public CustomerController(ICustomerServices customerServices)
         {
-            _customerServices = new CustomerServices();
+            _customerServices = customerServices;
         }
 
         [HttpGet]
@@ -34,7 +33,7 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
-            var customer = _customerServices.GetCustomerByID(id);
+            var customer = _customerServices.GetCustomerByIDAsync(id);
             return Ok(customer);
         }
 
@@ -48,16 +47,16 @@ namespace Durur.Modules.Api.Controllers
         [HttpPut]
         public IActionResult UpdateCustomer([FromBody] Customer customer)
         {
-            _customerServices.UpdateCustomer(customer);
+            _customerServices.UpdateCustomer(customer,customer);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteCustomer(int id)
         {
-            if (_customerServices.GetCustomerByID(id) != null)
+            if (_customerServices.GetCustomerByIDAsync(id) != null)
             {
-                _customerServices.DeleteCustomer(id);
+                _customerServices.RemoveCustomer(id);
                 return Ok();
             }
             return NotFound();

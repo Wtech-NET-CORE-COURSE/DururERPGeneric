@@ -1,6 +1,5 @@
 ﻿using Durur.Modules.Business.Abstract;
-using Durur.Modules.Business.Concrete;
-using Durur.Modules.Entities;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +16,11 @@ namespace Durur.Modules.Api.Controllers
     [ApiController]
     public class CustomerAddressController : ControllerBase
     {
-        private ICustomerAddressServices _customerAddressServices;
+        private readonly ICustomerAddressServices _customerAddressServices;
 
-        public CustomerAddressController()
+        public CustomerAddressController(ICustomerAddressServices customerAddressServices)
         {
-            _customerAddressServices = new CustomerAddressServices();
+            _customerAddressServices = customerAddressServices;
         }
 
         [HttpGet]
@@ -34,7 +33,7 @@ namespace Durur.Modules.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
-            var customer = _customerAddressServices.GetCustomerAddressByID(id);
+            var customer = _customerAddressServices.GetCustomerAddressByIDAsync(id);
             return Ok(customer);
         }
 
@@ -42,31 +41,31 @@ namespace Durur.Modules.Api.Controllers
         [Route("[action]/{id}")]
         public IActionResult GetByCustomerID(int id)
         {
-            var customer = _customerAddressServices.GetCustomerAddressesByCustomerID(id);
+            var customer = _customerAddressServices.GetCustomerAddressesByCustomerIDAsync(id);
             return Ok(customer);
         }
 
 
         [HttpPost]
-        public IActionResult AddCustomerAddress([FromBody] CustomerAddress customer)
+        public IActionResult AddCustomerAddress([FromBody] CustomerAddress customerAddress)
         {
-            _customerAddressServices.AddCustomerAddress(customer);
+            _customerAddressServices.AddCustomerAddressAsync(customerAddress);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult UpdateCustomerAddress([FromBody] CustomerAddress customer)
+        public IActionResult UpdateCustomerAddress([FromBody] CustomerAddress customerAddress)
         {
-            _customerAddressServices.UpdateCustomerAddress(customer);
+            _customerAddressServices.UpdateCustomerAddress(customerAddress,customerAddress);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteCustomerAddress(int id)
         {
-            if (_customerAddressServices.GetCustomerAddressByID(id) != null)
+            if (_customerAddressServices.GetCustomerAddressByIDAsync(id) != null)
             {
-                _customerAddressServices.DeleteCustomerAddress(id);
+                _customerAddressServices.RemoveCustomerAddress(id);
                 return Ok();
             }
             return NotFound();
