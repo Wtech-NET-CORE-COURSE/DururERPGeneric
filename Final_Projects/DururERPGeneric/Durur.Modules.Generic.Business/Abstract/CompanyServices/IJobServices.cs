@@ -16,8 +16,8 @@ namespace Durur.Modules.Business.Abstract
 
         Job UpdateJob(Job jobToUpdate,Job job);
 
-        void RemoveJob(int id);
+        Task RemoveJob(int id);
 
-        void RemoveJob(Job job);
+        Task RemoveJob(Job job);
     }
 }

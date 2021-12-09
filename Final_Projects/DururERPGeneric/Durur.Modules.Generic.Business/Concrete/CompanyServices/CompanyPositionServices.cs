@@ -21,39 +21,46 @@ namespace Durur.Modules.Generic.Business.Concrete
 
         public async Task AddCompanyPositionAsync(CompanyPosition companyPosition)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.CompanyPositions.AddAsync(companyPosition);
         }
 
 
-        public async Task AddCompanyPositionsAsync(IEnumerable<CompanyPosition> companyPositions)
+        public async Task AddCompanyPositionRangeAsync(IEnumerable<CompanyPosition> companyPositions)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.CompanyPositions.AddRangeAsync(companyPositions);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task<CompanyPosition> GetCompanyPositionByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var companyPosition=await _unitOfWork.CompanyPositions.GetByIDAsync(id);
+            return companyPosition;
         }
 
         public async Task<IEnumerable<CompanyPosition>> GetCompanyPositionsAsync()
         {
-            throw new NotImplementedException();
+            var companyPositions = await _unitOfWork.CompanyPositions.GetAllAsync();
+            return companyPositions;
         }
 
-        public void RemoveCompanyPosition(int id)
+        public async Task RemoveCompanyPosition(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.CompanyPositions.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public void RemoveCompanyPosition(CompanyPosition companyPosition)
+        public async Task RemoveCompanyPosition(CompanyPosition companyPosition)
         {
-            throw new NotImplementedException();
+            _unitOfWork.CompanyPositions.Remove(companyPosition);
+            await _unitOfWork.CommitAsync();
         }
 
 
-        public CompanyPosition UpdateCompanyPosition(CompanyPosition companyPositionToUpdated, CompanyPosition companyPosition)
+        public async Task UpdateCompanyPosition(CompanyPosition companyPositionToBeUpdated, CompanyPosition companyPosition)
         {
-            throw new NotImplementedException();
+            companyPositionToBeUpdated.Company_Position_Name = companyPosition.Company_Position_Name;
+            companyPositionToBeUpdated.Company_Position_Description = companyPosition.Company_Position_Description;
+            await _unitOfWork.CommitAsync();
         }
     }
 }

@@ -42,12 +42,12 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public void RemoveCustomerAddress(int id)
+        public Task RemoveCustomerAddress(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveCustomerAddress(CustomerAddress customerAddress)
+        public Task RemoveCustomerAddress(CustomerAddress customerAddress)
         {
             throw new NotImplementedException();
         }

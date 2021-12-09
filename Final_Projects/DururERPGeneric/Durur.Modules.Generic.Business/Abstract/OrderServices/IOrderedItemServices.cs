@@ -20,8 +20,8 @@ namespace Durur.Modules.Business.Abstract
 
         OrderedItem UpdateOrderedItem(OrderedItem orderedItemToUpdate,OrderedItem orderedItem);
 
-        void RemoveOrderedItem(int id);
-        void RemoveOrderedItem(OrderedItem orderedItem);
-        void RemoveOrderedItemRange(IEnumerable<OrderedItem> orderedItems);
+        Task RemoveOrderedItem(int id);
+        Task RemoveOrderedItem(OrderedItem orderedItem);
+        Task RemoveOrderedItemRange(IEnumerable<OrderedItem> orderedItems);
     }
 }

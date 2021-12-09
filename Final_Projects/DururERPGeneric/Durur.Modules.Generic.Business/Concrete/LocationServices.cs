@@ -32,12 +32,12 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public void RemoveLocation(int id)
+        public Task RemoveLocation(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveLocation(Location location)
+        public Task RemoveLocation(Location location)
         {
             throw new NotImplementedException();
         }

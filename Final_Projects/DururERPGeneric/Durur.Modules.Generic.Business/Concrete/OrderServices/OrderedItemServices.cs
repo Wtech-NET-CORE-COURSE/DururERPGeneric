@@ -42,17 +42,17 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public void RemoveOrderedItem(int id)
+        public Task RemoveOrderedItem(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveOrderedItem(OrderedItem orderedItem)
+        public Task RemoveOrderedItem(OrderedItem orderedItem)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveOrderedItemRange(IEnumerable<OrderedItem> orderedItems)
+        public Task RemoveOrderedItemRange(IEnumerable<OrderedItem> orderedItems)
         {
             throw new NotImplementedException();
         }

@@ -15,11 +15,10 @@ namespace Durur.Modules.Business.Abstract
 
         Task AddCompanyPositionAsync(CompanyPosition companyPosition);
 
+        Task UpdateCompanyPosition(CompanyPosition companyPositionToBeUpdated, CompanyPosition companyPosition);
 
-        CompanyPosition UpdateCompanyPosition(CompanyPosition companyPositionToUpdated, CompanyPosition companyPosition);
+        Task RemoveCompanyPosition(int id);
 
-        void RemoveCompanyPosition(int id);
-
-        void RemoveCompanyPosition(CompanyPosition companyPosition);
+        Task RemoveCompanyPosition(CompanyPosition companyPosition);
     }
 }

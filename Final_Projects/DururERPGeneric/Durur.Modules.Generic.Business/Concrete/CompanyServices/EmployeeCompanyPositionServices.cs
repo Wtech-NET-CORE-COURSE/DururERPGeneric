@@ -47,12 +47,12 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public void RemoveEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition)
+        public Task RemoveEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions)
+        public Task RemoveEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions)
         {
             throw new NotImplementedException();
         }

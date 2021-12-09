@@ -16,7 +16,7 @@ namespace Durur.Modules.Business.Abstract
 
         User UpdateUser(User userToUpdate, User user);
 
-        void RemoveUser(int id);
-        void RemoveUser(User user);
+        Task RemoveUser(int id);
+        Task RemoveUser(User user);
     }
 }

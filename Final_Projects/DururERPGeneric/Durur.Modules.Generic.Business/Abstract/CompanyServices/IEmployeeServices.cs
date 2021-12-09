@@ -18,10 +18,10 @@ namespace Durur.Modules.Business.Abstract
 
         Employee UpdateEmployee(Employee employeeToUpdate,Employee employee);
 
-        void RemoveEmployee(int id);
+        Task RemoveEmployee(int id);
 
-        void RemoveEmployee(Employee employee);
+        Task RemoveEmployee(Employee employee);
 
-        void RemoveEmployeeRange(IEnumerable<Employee> employees);
+        Task RemoveEmployeeRange(IEnumerable<Employee> employees);
     }
 }

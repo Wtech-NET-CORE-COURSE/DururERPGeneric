@@ -34,12 +34,12 @@ namespace Durur.Modules.Generic.Business.Concrete
             return jobs;
         }
 
-        public void RemoveJob(int id)
+        public Task RemoveJob(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveJob(Job job)
+        public Task RemoveJob(Job job)
         {
             throw new NotImplementedException();
         }

@@ -19,7 +19,7 @@ namespace Durur.Modules.Business.Abstract
 
         CustomerAddress UpdateCustomerAddress(CustomerAddress customerAddressToUpdate,CustomerAddress customerAddress);
 
-        void RemoveCustomerAddress(int id);
-        void RemoveCustomerAddress(CustomerAddress customerAddress);
+        Task RemoveCustomerAddress(int id);
+        Task RemoveCustomerAddress(CustomerAddress customerAddress);
     }
 }

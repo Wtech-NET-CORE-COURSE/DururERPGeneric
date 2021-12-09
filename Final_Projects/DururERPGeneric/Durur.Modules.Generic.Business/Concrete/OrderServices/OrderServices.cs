@@ -37,12 +37,12 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public void RemoveOrder(int id)
+        public Task RemoveOrder(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveOrder(Order order)
+        public Task RemoveOrder(Order order)
         {
             throw new NotImplementedException();
         }

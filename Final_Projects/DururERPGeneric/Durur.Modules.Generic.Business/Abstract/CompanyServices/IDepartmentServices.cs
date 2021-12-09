@@ -22,9 +22,9 @@ namespace Durur.Modules.Business.Abstract
 
         Department UpdateDepartment(Department departmentToUpdate, Department department);
 
-        void RemoveDepartment(int id);
+        Task RemoveDepartment(int id);
 
-        void RemoveDepartment(Department department);
+        Task RemoveDepartment(Department department);
 
     }
 }

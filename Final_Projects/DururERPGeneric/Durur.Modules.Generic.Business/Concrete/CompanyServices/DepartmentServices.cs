@@ -47,12 +47,12 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public void RemoveDepartment(int id)
+        public Task RemoveDepartment(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveDepartment(Department department)
+        public Task RemoveDepartment(Department department)
         {
             throw new NotImplementedException();
         }

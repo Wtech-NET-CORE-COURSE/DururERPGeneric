@@ -19,8 +19,8 @@ namespace Durur.Modules.Business.Abstract
         void AddEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition);
         void AddEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions);
 
-        void RemoveEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition);
-        void RemoveEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions);
+        Task RemoveEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition);
+        Task RemoveEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions);
 
     }
 }

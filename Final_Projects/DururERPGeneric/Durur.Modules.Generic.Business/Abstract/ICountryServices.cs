@@ -16,7 +16,7 @@ namespace Durur.Modules.Business.Abstract
 
         Country UpdateCountry(Country countryToUpdate, Country country);
 
-        void RemoveCountry(int id);
-        void RemoveCountry(Country country);
+        Task RemoveCountry(int id);
+        Task RemoveCountry(Country country);
     }
 }

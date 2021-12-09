@@ -18,8 +18,8 @@ namespace Durur.Modules.Business.Abstract
 
         Order UpdateOrder(Order orderToUpdate,Order order);
 
-        void RemoveOrder(int id);
-        void RemoveOrder(Order order);
+        Task RemoveOrder(int id);
+        Task RemoveOrder(Order order);
 
     }
 }

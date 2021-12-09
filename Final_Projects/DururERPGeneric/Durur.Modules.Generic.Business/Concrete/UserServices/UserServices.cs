@@ -17,9 +17,10 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddUserAsync(User user)
+        public async Task AddUserAsync(User user)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Users.AddAsync(user);
+            await _unitOfWork.CommitAsync();
         }
 
         public Task<User> GetUserByIDAsync(int id)
@@ -32,12 +33,12 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public void RemoveUser(int id)
+        public Task RemoveUser(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveUser(User user)
+        public Task RemoveUser(User user)
         {
             throw new NotImplementedException();
         }

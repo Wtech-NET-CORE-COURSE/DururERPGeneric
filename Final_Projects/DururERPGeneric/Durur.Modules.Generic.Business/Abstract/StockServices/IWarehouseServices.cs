@@ -16,7 +16,7 @@ namespace Durur.Modules.Business.Abstract
 
         Warehouse UpdateWarehouse(Warehouse warehouseToUpdate, Warehouse warehouse);
 
-        void RemoveWarehouse(int id);
-        void RemoveWarehouse(Warehouse warehouse);
+        Task RemoveWarehouse(int id);
+        Task RemoveWarehouse(Warehouse warehouse);
     }
 }

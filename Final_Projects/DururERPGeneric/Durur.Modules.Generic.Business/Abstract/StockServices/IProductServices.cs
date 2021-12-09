@@ -16,7 +16,7 @@ namespace Durur.Modules.Business.Abstract
 
         Product UpdateProduct(Product productToUpdate,Product product);
 
-        void RemoveProduct(int id);
-        void RemoveProduct(Product product);
+        Task RemoveProduct(int id);
+        Task RemoveProduct(Product product);
     }
 }

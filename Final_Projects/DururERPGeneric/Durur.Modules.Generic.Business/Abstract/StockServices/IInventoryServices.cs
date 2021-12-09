@@ -18,6 +18,6 @@ namespace Durur.Modules.Business.Abstract
 
         Inventory UpdateInventory(Inventory inventoryToUpdate,Inventory inventory);
 
-        void RemoveInventory(Inventory inventory);
+        Task RemoveInventory(Inventory inventory);
     }
 }

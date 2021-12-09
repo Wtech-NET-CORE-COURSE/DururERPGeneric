@@ -16,7 +16,7 @@ namespace Durur.Modules.Business.Abstract
 
         OrderStatus UpdateOrderStatus(OrderStatus orderStatusToUpdate,OrderStatus orderStatus);
 
-        void RemoveOrderStatus(int id);
-        void RemoveOrderStatus(OrderStatus orderStatus);
+        Task RemoveOrderStatus(int id);
+        Task RemoveOrderStatus(OrderStatus orderStatus);
     }
 }

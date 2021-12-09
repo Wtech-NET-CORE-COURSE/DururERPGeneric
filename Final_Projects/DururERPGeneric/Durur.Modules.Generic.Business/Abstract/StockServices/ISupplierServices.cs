@@ -16,7 +16,7 @@ namespace Durur.Modules.Business.Abstract
 
         Supplier UpdateSupplier(Supplier supplierToUpdate, Supplier supplier);
 
-        void RemoveSupplier(int id);
-        void RemoveSupplier(Supplier supplier);
+        Task RemoveSupplier(int id);
+        Task RemoveSupplier(Supplier supplier);
     }
 }

@@ -33,12 +33,12 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public void RemoveCountry(int id)
+        public Task RemoveCountry(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveCountry(Country country)
+        public Task RemoveCountry(Country country)
         {
             throw new NotImplementedException();
         }

@@ -37,7 +37,7 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public void RemoveInventory(Inventory inventory)
+        public Task RemoveInventory(Inventory inventory)
         {
             throw new NotImplementedException();
         }

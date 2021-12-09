@@ -16,7 +16,7 @@ namespace Durur.Modules.Business.Abstract
 
         Location UpdateLocation(Location locationToUpdate,Location location);
 
-        void RemoveLocation(int id);
-        void RemoveLocation(Location location);
+        Task RemoveLocation(int id);
+        Task RemoveLocation(Location location);
     }
 }
