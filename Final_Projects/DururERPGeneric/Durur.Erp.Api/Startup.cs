@@ -32,8 +32,9 @@ namespace Durur.Erp.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<ErpGenericDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString(DbConnection.LocalConnection.ToString())));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICompanyPositionServices, CompanyPositionServices>();
@@ -54,6 +55,10 @@ namespace Durur.Erp.Api
             services.AddScoped<ICountryServices, CountryServices>();
             services.AddScoped<ILocationServices, LocationServices>();
 
+
+
+            services.AddTransient<Helpers.GenericHelper>();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt=>opt.TokenValidationParameters=new TokenValidationParameters { 
                 ValidateAudience=true,          //Token deðerini kimlerin-hangi uygulamalarýn kullanacaðýný belirler
                 ValidateIssuer=true,            //Oluþturulan token deðerini kim daðýtmýþtýr
@@ -68,9 +73,13 @@ namespace Durur.Erp.Api
 
             services.AddControllers();
             services.AddRazorPages();
+            services.AddSwaggerDocument(s =>
+            {
+                s.Title = "DURUR ERP API";
+            });
 
 
-            services.AddMvc().AddRazorPagesOptions(opt => opt.Conventions.AddPageRoute("/Login", ""));
+            //services.AddMvc().AddRazorPagesOptions(opt => opt.Conventions.AddPageRoute("/Login", ""));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,6 +101,9 @@ namespace Durur.Erp.Api
 
             app.UseRouting();
 
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -99,6 +111,11 @@ namespace Durur.Erp.Api
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
+        }
+        enum DbConnection
+        {
+            LocalConnection,
+            DefaultConnection
         }
     }
 }
