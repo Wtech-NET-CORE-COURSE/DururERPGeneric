@@ -10,6 +10,6 @@ namespace Durur.Modules.Generic.Entities.Repositories
     {
         Task<IEnumerable<Department>> GetDepartmentsByLocationIDAsync(int locationId);
 
-        Department GetDepartmentByName(string name);
+        Task<Department> GetDepartmentByName(string name);
     }
 }
