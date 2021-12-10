@@ -21,7 +21,7 @@ namespace Durur.Erp.Api.TokenModels
         }
 
         //Token üretecek method
-        public Token CreateToken(User user)
+        public Token CreateAccessToken()
         {
             Token token = new Token();
             //SecurityKey'in simetrik yansımasını alır
@@ -29,13 +29,13 @@ namespace Durur.Erp.Api.TokenModels
 
             SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);//Şifreli kimlik oluşturuluyor.
 
-            token.Expiration = DateTime.Now.AddMinutes(5);// token süresine 5 dk ekler
+            token.Expiration = DateTime.UtcNow.AddMinutes(5);// token süresine 5 dk ekler
 
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
                 issuer: Configuration["Token:Issuer"],
                 audience: Configuration["Token:Audience"],
                 expires: token.Expiration,
-                notBefore: DateTime.Now,              //Token üretildikten sonra süre ne zaman devreye girsin.
+                notBefore: DateTime.UtcNow,              //Token üretildikten sonra süre ne zaman devreye girsin.
                 signingCredentials: signingCredentials
                 );
 
@@ -51,12 +51,9 @@ namespace Durur.Erp.Api.TokenModels
         public string CreateRefreshToken()
         {
             byte[] tokenArray = new byte[32];
-            using (RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create())
-            {
-                randomNumberGenerator.GetBytes(tokenArray);
-
-                return Convert.ToBase64String(tokenArray);
-            }
+            using RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+            randomNumberGenerator.GetBytes(tokenArray);
+            return Convert.ToBase64String(tokenArray);
         }
     }
 }
