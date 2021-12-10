@@ -23,9 +23,10 @@ namespace Durur.Modules.Generic.Business.Concrete
             await _unitOfWork.CommitAsync();
         }
 
-        public Task<Job> GetJobByID(int id)
+        public async Task<Job> GetJobByID(int id)
         {
-            throw new NotImplementedException();
+            var job = await _unitOfWork.Jobs.GetByIDAsync(id);
+            return job;
         }
 
         public async Task<IEnumerable<Job>> GetJobsAsync()
@@ -34,14 +35,16 @@ namespace Durur.Modules.Generic.Business.Concrete
             return jobs;
         }
 
-        public Task RemoveJob(int id)
+        public async Task RemoveJob(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Jobs.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveJob(Job job)
+        public async Task RemoveJob(Job job)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Jobs.Remove(job);
+            await _unitOfWork.CommitAsync();
         }
 
         public Job UpdateJob(Job jobToUpdate, Job job)

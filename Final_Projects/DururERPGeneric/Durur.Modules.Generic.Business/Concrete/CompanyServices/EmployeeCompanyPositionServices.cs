@@ -17,44 +17,50 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public void AddEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition)
+        public async Task AddEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.EmployeeCompanyPositions.AddAsync(employeeCompanyPosition);
         }
 
-        public void AddEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions)
+        public async Task AddEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.EmployeeCompanyPositions.AddRangeAsync(employeeCompanyPositions);
         }
 
-        public Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeeCompanyPositionsAsync()
+        public async Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeeCompanyPositionsAsync()
         {
-            throw new NotImplementedException();
+            var positions = await _unitOfWork.EmployeeCompanyPositions.GetAllAsync();
+            return positions;
         }
 
-        public Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByCompanyPositionIDAsync(int companyPositionId)
+        public async Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByCompanyPositionIDAsync(int companyPositionId)
         {
-            throw new NotImplementedException();
+            var positions = await _unitOfWork.EmployeeCompanyPositions.GetEmployeePositionsByCompanyPositionIDAsync(companyPositionId);
+            return positions;
         }
 
-        public Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByDepartmentIDAsync(int departmentId)
+        public async Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByDepartmentIDAsync(int departmentId)
         {
-            throw new NotImplementedException();
+            var positions = await _unitOfWork.EmployeeCompanyPositions.GetEmployeePositionsByDepartmentIDAsync(departmentId);
+            return positions;
         }
 
-        public Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByEmployeeIDAsync(int employeeId)
+        public async Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByEmployeeIDAsync(int employeeId)
         {
-            throw new NotImplementedException();
+            var positions = await _unitOfWork.EmployeeCompanyPositions.GetEmployeePositionsByEmployeeIDAsync(employeeId);
+            return positions;
         }
 
-        public Task RemoveEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition)
+        public async Task RemoveEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition)
         {
-            throw new NotImplementedException();
+            _unitOfWork.EmployeeCompanyPositions.Remove(employeeCompanyPosition);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions)
+        public async Task RemoveEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions)
         {
-            throw new NotImplementedException();
+            _unitOfWork.EmployeeCompanyPositions.RemoveRange(employeeCompanyPositions);
+            await _unitOfWork.CommitAsync();
         }
     }
 }

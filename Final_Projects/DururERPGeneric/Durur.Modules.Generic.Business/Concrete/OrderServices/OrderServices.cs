@@ -17,34 +17,39 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddOrderAsync(Order order)
+        public async Task AddOrderAsync(Order order)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Orders.AddAsync(order);
         }
 
-        public Task<Order> GetOrderByIDAsync(int id)
+        public async Task<Order> GetOrderByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var order = await _unitOfWork.Orders.GetByIDAsync(id);
+            return order;
         }
 
-        public Task<IEnumerable<Order>> GetOrdersAsync()
+        public async Task<IEnumerable<Order>> GetOrdersAsync()
         {
-            throw new NotImplementedException();
+            var orders = await _unitOfWork.Orders.GetAllAsync();
+            return orders;
         }
 
-        public Task<IEnumerable<Order>> GetOrdersByCustomerIDAsync(int customerId)
+        public async Task<IEnumerable<Order>> GetOrdersByCustomerIDAsync(int customerId)
         {
-            throw new NotImplementedException();
+            var order = await _unitOfWork.Orders.GetOrdersByCustomerID(customerId);
+            return order;
         }
 
-        public Task RemoveOrder(int id)
+        public async Task RemoveOrder(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Orders.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveOrder(Order order)
+        public async Task RemoveOrder(Order order)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Orders.Remove(order);
+            await _unitOfWork.CommitAsync();
         }
 
         public Order UpdateOrder(Order orderToUpdate, Order order)

@@ -17,29 +17,33 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddOrderStatusAsync(OrderStatus orderStatus)
+        public async Task AddOrderStatusAsync(OrderStatus orderStatus)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.OrderStatuses.AddAsync(orderStatus);
         }
 
-        public Task<OrderStatus> GetOrderStatusByIDAsync(int id)
+        public async Task<OrderStatus> GetOrderStatusByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var orderstatus = await _unitOfWork.OrderStatuses.GetByIDAsync(id);
+            return orderstatus;
         }
 
-        public Task<IEnumerable<OrderStatus>> GetOrderStatusesAsync()
+        public async Task<IEnumerable<OrderStatus>> GetOrderStatusesAsync()
         {
-            throw new NotImplementedException();
+            var orderstatus = await _unitOfWork.OrderStatuses.GetAllAsync();
+            return orderstatus;
         }
 
-        public Task RemoveOrderStatus(int id)
+        public async Task RemoveOrderStatus(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.OrderStatuses.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveOrderStatus(OrderStatus orderStatus)
+        public async Task RemoveOrderStatus(OrderStatus orderStatus)
         {
-            throw new NotImplementedException();
+            _unitOfWork.OrderStatuses.Remove(orderStatus);
+            await _unitOfWork.CommitAsync();
         }
 
         public OrderStatus UpdateOrderStatus(OrderStatus orderStatusToUpdate, OrderStatus orderStatus)

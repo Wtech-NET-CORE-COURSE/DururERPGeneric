@@ -17,39 +17,44 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddEmployeeAsync(Employee employee)
+        public async Task AddEmployeeAsync(Employee employee)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Employees.AddAsync(employee);
         }
 
-        public Task AddEmployeeRangeAsync(IEnumerable<Employee> employees)
+        public async Task AddEmployeeRangeAsync(IEnumerable<Employee> employees)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Employees.AddRangeAsync(employees);
         }
 
-        public Task<Employee> GetEmployeeByIDAsync(int id)
+        public async Task<Employee> GetEmployeeByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var employee = await _unitOfWork.Employees.GetByIDAsync(id);
+            return employee;
         }
 
-        public Task<IEnumerable<Employee>> GetEmployeesAsync()
+        public async Task<IEnumerable<Employee>> GetEmployeesAsync()
         {
-            throw new NotImplementedException();
+            var employees = await _unitOfWork.Employees.GetAllAsync();
+            return employees;
         }
 
-        public Task RemoveEmployee(int id)
+        public async Task RemoveEmployee(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Employees.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveEmployee(Employee employee)
+        public async Task RemoveEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Employees.Remove(employee);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveEmployeeRange(IEnumerable<Employee> employees)
+        public async Task RemoveEmployeeRange(IEnumerable<Employee> employees)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Employees.RemoveRange(employees);
+            await _unitOfWork.CommitAsync();
         }
 
         public Employee UpdateEmployee(Employee employeeToUpdate, Employee employee)

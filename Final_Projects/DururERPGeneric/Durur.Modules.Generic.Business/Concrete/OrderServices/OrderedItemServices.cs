@@ -17,29 +17,32 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddOrderedItemAsync(OrderedItem orderedItem)
+        public async Task AddOrderedItemAsync(OrderedItem orderedItem)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.OrderedItems.AddAsync(orderedItem);
         }
 
-        public Task AddOrderedItemRangeAsync(IEnumerable<OrderedItem> orderedItems)
+        public async Task AddOrderedItemRangeAsync(IEnumerable<OrderedItem> orderedItems)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.OrderedItems.AddRangeAsync(orderedItems);
         }
 
-        public Task<OrderedItem> GetOrderedItemByIDAsync(int id)
+        public async Task<OrderedItem> GetOrderedItemByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var orderedItem = await _unitOfWork.OrderedItems.GetByIDAsync(id);
+            return orderedItem;
         }
 
-        public Task<IEnumerable<OrderedItem>> GetOrderedItemsAsync()
+        public async Task<IEnumerable<OrderedItem>> GetOrderedItemsAsync()
         {
-            throw new NotImplementedException();
+            var orderedItems = await _unitOfWork.OrderedItems.GetAllAsync();
+            return orderedItems;
         }
 
-        public Task<IEnumerable<OrderedItem>> GetOrderedItemsByOrderIDAsync(int id)
+        public async Task<IEnumerable<OrderedItem>> GetOrderedItemsByOrderIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var orderedItems = await _unitOfWork.OrderedItems.GetOrderedItemsByOrderIDAsync(id);
+            return orderedItems;
         }
 
         public Task RemoveOrderedItem(int id)

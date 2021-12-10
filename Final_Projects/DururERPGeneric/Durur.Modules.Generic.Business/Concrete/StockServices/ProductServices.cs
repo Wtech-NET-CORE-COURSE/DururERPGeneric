@@ -17,29 +17,33 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddProductAsync(Product product)
+        public async Task AddProductAsync(Product product)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Products.AddAsync(product);
         }
 
-        public Task<Product> GetProductByIDAsync(int id)
+        public async Task<Product> GetProductByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var product =await _unitOfWork.Products.GetByIDAsync(id);
+            return product;
         }
 
-        public Task<IEnumerable<Product>> GetProductsAsync()
+        public async Task<IEnumerable<Product>> GetProductsAsync()
         {
-            throw new NotImplementedException();
+            var products = await _unitOfWork.Products.GetAllAsync();
+            return products;
         }
 
-        public Task RemoveProduct(int id)
+        public async Task RemoveProduct(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Products.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveProduct(Product product)
+        public async Task RemoveProduct(Product product)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Products.Remove(product);
+            await _unitOfWork.CommitAsync();
         }
 
         public Product UpdateProduct(Product productToUpdate, Product product)

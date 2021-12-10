@@ -17,29 +17,33 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddSupplierAsync(Supplier supplier)
+        public async Task AddSupplierAsync(Supplier supplier)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Suppliers.AddAsync(supplier);
         }
 
-        public Task<Supplier> GetSupplierByIDAsync(int id)
+        public async Task<Supplier> GetSupplierByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var supplier = await _unitOfWork.Suppliers.GetByIDAsync(id);
+            return supplier;
         }
 
-        public Task<IEnumerable<Supplier>> GetSuppliersAsync()
+        public async Task<IEnumerable<Supplier>> GetSuppliersAsync()
         {
-            throw new NotImplementedException();
+            var suppliers = await _unitOfWork.Suppliers.GetAllAsync();
+            return suppliers;
         }
 
-        public Task RemoveSupplier(int id)
+        public async Task RemoveSupplier(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Suppliers.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveSupplier(Supplier supplier)
+        public async Task RemoveSupplier(Supplier supplier)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Suppliers.Remove(supplier);
+            await _unitOfWork.CommitAsync();
         }
 
         public Supplier UpdateSupplier(Supplier supplierToUpdate, Supplier supplier)

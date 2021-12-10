@@ -17,29 +17,33 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddWarehouseAsync(Warehouse warehouse)
+        public async Task AddWarehouseAsync(Warehouse warehouse)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Warehouses.AddAsync(warehouse);
         }
 
-        public Task<Warehouse> GetWarehouseByIDAsync(int id)
+        public async Task<Warehouse> GetWarehouseByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var warehouse = await _unitOfWork.Warehouses.GetByIDAsync(id);
+            return warehouse;
         }
 
-        public Task<IEnumerable<Warehouse>> GetWarehousesAsync()
+        public async Task<IEnumerable<Warehouse>> GetWarehousesAsync()
         {
-            throw new NotImplementedException();
+            var warehouses = await _unitOfWork.Warehouses.GetAllAsync();
+            return warehouses;
         }
 
-        public Task RemoveWarehouse(int id)
+        public async Task RemoveWarehouse(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Warehouses.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveWarehouse(Warehouse warehouse)
+        public async Task RemoveWarehouse(Warehouse warehouse)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Warehouses.Remove(warehouse);
+            await _unitOfWork.CommitAsync();
         }
 
         public Warehouse UpdateWarehouse(Warehouse warehouseToUpdate, Warehouse warehouse)

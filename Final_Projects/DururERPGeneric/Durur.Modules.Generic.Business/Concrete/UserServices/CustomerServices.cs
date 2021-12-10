@@ -17,29 +17,33 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddCustomer(Customer customer)
+        public async Task AddCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Customers.AddAsync(customer);
+
         }
 
-        public Task<Customer> GetCustomerByIDAsync(int id)
+        public async Task<Customer> GetCustomerByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.Customers.GetByIDAsync(id);
         }
 
-        public Task<IEnumerable<Customer>> GetCustomersAsync()
+        public async Task<IEnumerable<Customer>> GetCustomersAsync()
         {
-            throw new NotImplementedException();
+            var customer = await _unitOfWork.Customers.GetAllAsync();
+            return customer;
         }
 
-        public Task RemoveCustomer(int id)
+        public async Task RemoveCustomer(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Customers.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveCustomer(Customer customer)
+        public async Task RemoveCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Customers.Remove(customer);
+            await _unitOfWork.CommitAsync();
         }
 
         public Customer UpdateCustomer(Customer customerToUpdate, Customer customer)

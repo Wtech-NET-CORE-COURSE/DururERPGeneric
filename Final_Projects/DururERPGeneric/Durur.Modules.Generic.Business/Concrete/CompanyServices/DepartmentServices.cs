@@ -17,44 +17,50 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddDepartmentAsync(Department department)
+        public async Task AddDepartmentAsync(Department department)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Departments.AddAsync(department);
         }
 
-        public Task AddDepartmentRangeAsync(IEnumerable<Department> departments)
+        public async Task AddDepartmentRangeAsync(IEnumerable<Department> departments)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Departments.AddRangeAsync(departments);
         }
 
-        public Task<Department> GetDepartmentByIDAsync(int id)
+        public async Task<Department> GetDepartmentByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var department = await _unitOfWork.Departments.GetByIDAsync(id);
+            return department;
         }
 
-        public Task<Department> GetDepartmentByName(string name)
+        public async Task<Department> GetDepartmentByName(string name)
         {
-            throw new NotImplementedException();
+            var department = await _unitOfWork.Departments.GetDepartmentByName(name);
+            return department;
         }
 
-        public Task<IEnumerable<Department>> GetDepartmentsAsync()
+        public async Task<IEnumerable<Department>> GetDepartmentsAsync()
         {
-            throw new NotImplementedException();
+            var departments = await _unitOfWork.Departments.GetAllAsync();
+            return departments;
         }
 
-        public Task<IEnumerable<Department>> GetDepartmentsByLocationIDAsync(int locationId)
+        public async Task<IEnumerable<Department>> GetDepartmentsByLocationIDAsync(int locationId)
         {
-            throw new NotImplementedException();
+            var departments = await _unitOfWork.Departments.GetDepartmentsByLocationIDAsync(locationId);
+            return departments;
         }
 
-        public Task RemoveDepartment(int id)
+        public async Task RemoveDepartment(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Departments.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveDepartment(Department department)
+        public async Task RemoveDepartment(Department department)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Departments.Remove(department);
+            await _unitOfWork.CommitAsync();
         }
 
         public Department UpdateDepartment(Department departmentToUpdate, Department department)

@@ -16,8 +16,8 @@ namespace Durur.Modules.Business.Abstract
 
         Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByCompanyPositionIDAsync(int companyPositionId);
 
-        void AddEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition);
-        void AddEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions);
+        Task AddEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition);
+        Task AddEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions);
 
         Task RemoveEmployeePosition(EmployeeCompanyPosition employeeCompanyPosition);
         Task RemoveEmployeePositionRange(IEnumerable<EmployeeCompanyPosition> employeeCompanyPositions);

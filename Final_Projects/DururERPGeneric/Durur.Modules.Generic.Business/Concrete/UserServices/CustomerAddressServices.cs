@@ -17,39 +17,44 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddCustomerAddressAsync(CustomerAddress customerAddress)
+        public async Task AddCustomerAddressAsync(CustomerAddress customerAddress)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.CustomerAddresses.AddAsync(customerAddress);
         }
 
-        public Task AddCustomerAddressRangeAsync(IEnumerable<CustomerAddress> customerAddress)
+        public async Task AddCustomerAddressRangeAsync(IEnumerable<CustomerAddress> customerAddress)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.CustomerAddresses.AddRangeAsync(customerAddress);
         }
 
-        public Task<IEnumerable<CustomerAddress>> GetCustomerAddressAsync()
+        public async Task<IEnumerable<CustomerAddress>> GetCustomerAddressAsync()
         {
-            throw new NotImplementedException();
+            var customerAddresses= await _unitOfWork.CustomerAddresses.GetAllAsync();
+            return customerAddresses;
         }
 
-        public Task<CustomerAddress> GetCustomerAddressByIDAsync(int id)
+        public async Task<CustomerAddress> GetCustomerAddressByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var customerAddress = await _unitOfWork.CustomerAddresses.GetByIDAsync(id);
+            return customerAddress;
         }
 
-        public Task<IEnumerable<CustomerAddress>> GetCustomerAddressesByCustomerIDAsync(int customerId)
+        public async Task<IEnumerable<CustomerAddress>> GetCustomerAddressesByCustomerIDAsync(int customerId)
         {
-            throw new NotImplementedException();
+            var customerAddresses = await _unitOfWork.CustomerAddresses.GetCustomerAddressesByCustomerID(customerId);
+            return customerAddresses;
         }
 
-        public Task RemoveCustomerAddress(int id)
+        public async Task RemoveCustomerAddress(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.CustomerAddresses.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveCustomerAddress(CustomerAddress customerAddress)
+        public async Task RemoveCustomerAddress(CustomerAddress customerAddress)
         {
-            throw new NotImplementedException();
+            _unitOfWork.CustomerAddresses.Remove(customerAddress);
+            await _unitOfWork.CommitAsync();
         }
 
         public CustomerAddress UpdateCustomerAddress(CustomerAddress customerAddressToUpdate, CustomerAddress customerAddress)

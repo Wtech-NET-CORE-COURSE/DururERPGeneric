@@ -17,29 +17,33 @@ namespace Durur.Modules.Generic.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddInventoryAsync(Inventory inventory)
+        public async Task AddInventoryAsync(Inventory inventory)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Inventories.AddAsync(inventory);
         }
 
-        public Task<IEnumerable<Inventory>> GetInventoriesAsync()
+        public async Task<IEnumerable<Inventory>> GetInventoriesAsync()
         {
-            throw new NotImplementedException();
+            var inventories = await _unitOfWork.Inventories.GetAllAsync();
+            return inventories;
         }
 
-        public Task<IEnumerable<Inventory>> GetInventoryByProductIDAsync(int productID)
+        public async Task<IEnumerable<Inventory>> GetInventoryByProductIDAsync(int productID)
         {
-            throw new NotImplementedException();
+            var inventories = await _unitOfWork.Inventories.GetInventoryByProductID(productID);
+            return inventories;
         }
 
-        public Task<IEnumerable<Inventory>> GetInventoryByWarehouseIDAsync(int warehouseID)
+        public async Task<IEnumerable<Inventory>> GetInventoryByWarehouseIDAsync(int warehouseID)
         {
-            throw new NotImplementedException();
+            var inventories = await _unitOfWork.Inventories.GetInventoryByWarehouseID(warehouseID);
+            return inventories;
         }
 
-        public Task RemoveInventory(Inventory inventory)
+        public async Task RemoveInventory(Inventory inventory)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Inventories.Remove(inventory);
+            await _unitOfWork.CommitAsync();
         }
 
         public Inventory UpdateInventory(Inventory inventoryToUpdate, Inventory inventory)
