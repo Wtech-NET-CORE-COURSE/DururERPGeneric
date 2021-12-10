@@ -1,7 +1,9 @@
 ﻿using Durur.Modules.Generic.Entities.Model;
 using Durur.Modules.Generic.Entities.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,14 +13,16 @@ namespace Durur.Modules.Generic.DataAccess.Repositories
     {
         public DepartmentRepository(ErpGenericDbContext context) : base(context) { }
 
-        public Department GetDepartmentByName(string name)
+        public async Task<Department> GetDepartmentByName(string name)
         {
-            throw new NotImplementedException();
+            var department = await Context.Departments.FirstOrDefaultAsync(d => d.Department_Name == name);
+            return department;
         }
 
-        public Task<IEnumerable<Department>> GetDepartmentsByLocationIDAsync(int locationId)
+        public async Task<IEnumerable<Department>> GetDepartmentsByLocationIDAsync(int locationId)
         {
-            throw new NotImplementedException();
+            var departments = await Context.Departments.Where(d => d.Location.Location_ID == locationId).ToListAsync();
+            return departments;
         }
     }
 }

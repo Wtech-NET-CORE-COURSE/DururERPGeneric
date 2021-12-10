@@ -1,7 +1,9 @@
 ﻿using Durur.Modules.Generic.Entities.Model;
 using Durur.Modules.Generic.Entities.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,14 +15,16 @@ namespace Durur.Modules.Generic.DataAccess.Repositories
         {
         }
 
-        public Task<IEnumerable<Inventory>> GetInventoryByProductID(int productID)
+        public async Task<IEnumerable<Inventory>> GetInventoryByProductID(int productID)
         {
-            throw new NotImplementedException();
+            var inventories = await Context.Inventories.Where(i => i.Product_ID == productID).ToListAsync();
+            return inventories;
         }
 
-        public Task<IEnumerable<Inventory>> GetInventoryByWarehouseID(int warehouseID)
+        public async Task<IEnumerable<Inventory>> GetInventoryByWarehouseID(int warehouseID)
         {
-            throw new NotImplementedException();
+            var inventories = await Context.Inventories.Where(i => i.Warehouse_ID == warehouseID).ToListAsync();
+            return inventories;
         }
     }
 }

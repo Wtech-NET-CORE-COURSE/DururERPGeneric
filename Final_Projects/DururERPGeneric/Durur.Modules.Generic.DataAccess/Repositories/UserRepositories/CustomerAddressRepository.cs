@@ -1,7 +1,9 @@
 ﻿using Durur.Modules.Generic.Entities.Model;
 using Durur.Modules.Generic.Entities.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,9 +15,10 @@ namespace Durur.Modules.Generic.DataAccess.Repositories
         {
         }
 
-        public Task<IEnumerable<CustomerAddress>> GetCustomerAddressesByCustomerID(int customerId)
+        public async Task<IEnumerable<CustomerAddress>> GetCustomerAddressesByCustomerID(int customerId)
         {
-            throw new NotImplementedException();
+            var customerAddress = await Context.Customer_Addresses.Where(c => c.Customer.Customer_ID == customerId).ToListAsync();
+            return customerAddress;
         }
     }
 }

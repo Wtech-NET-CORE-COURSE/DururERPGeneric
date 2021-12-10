@@ -1,7 +1,9 @@
 ﻿using Durur.Modules.Generic.Entities.Model;
 using Durur.Modules.Generic.Entities.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,19 +13,22 @@ namespace Durur.Modules.Generic.DataAccess.Repositories
     {
         public EmployeeCompanyPositionRepository(ErpGenericDbContext context) : base(context) { }
 
-        public Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByCompanyPositionIDAsync(int companyPositionId)
+        public async Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByCompanyPositionIDAsync(int companyPositionId)
         {
-            throw new NotImplementedException();
+            var positions = await Context.Employee_CompanyPositions.Where(e => e.Position_ID == companyPositionId).ToListAsync();
+            return positions;
         }
 
-        public Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByDepartmentIDAsync(int departmentId)
+        public async Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByDepartmentIDAsync(int departmentId)
         {
-            throw new NotImplementedException();
+            var positions = await Context.Employee_CompanyPositions.Where(e => e.Department_ID == departmentId).ToListAsync();
+            return positions;
         }
 
-        public Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByEmployeeIDAsync(int employeeId)
+        public async Task<IEnumerable<EmployeeCompanyPosition>> GetEmployeePositionsByEmployeeIDAsync(int employeeId)
         {
-            throw new NotImplementedException();
+            var positions = await Context.Employee_CompanyPositions.Where(e => e.Employee_ID == employeeId).ToListAsync();
+            return positions;
         }
     }
 }
