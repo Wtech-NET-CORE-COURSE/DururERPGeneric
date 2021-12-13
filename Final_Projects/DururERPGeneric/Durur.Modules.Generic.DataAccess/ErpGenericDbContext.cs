@@ -1,4 +1,6 @@
 ﻿using Durur.Modules.Generic.Entities.Model;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Text;
 
 namespace Durur.Modules.Generic.DataAccess
 {
-    public class ErpGenericDbContext : DbContext
+    public class ErpGenericDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public DbSet<Job> Jobs { get; set; }
 
