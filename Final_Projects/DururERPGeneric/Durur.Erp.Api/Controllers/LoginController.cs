@@ -41,7 +41,7 @@ namespace Durur.Erp.Api.Controllers
         [HttpPost("[action]")]
         public async Task<Token> Login([FromBody] UserLogin userLogin)
         {
-            User user = await context.Users.FirstOrDefaultAsync(w => w.Mail == userLogin.Mail && w.Password == userLogin.Password);
+            User user = await context.Users.FirstOrDefaultAsync(w => w.Email == userLogin.Email && w.PasswordHash == userLogin.Password);
             if (user != null)
             {
                 return await genericHelper.CreateToken(user, context, configuration);
