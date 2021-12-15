@@ -45,7 +45,7 @@ var KTSignupGeneral = function () {
                                 t.disabled = !0, setTimeout((function () {
                                     t.removeAttribute("data-kt-indicator"),
                                         t.disabled = !1,
-                                        theContact = {
+                                        var model = {
                                             name: $("[name='first-name']").val(),
                                             surname: $("[name='last-name']").val(),
                                             email: $("[name='email']").val(),
@@ -54,7 +54,7 @@ var KTSignupGeneral = function () {
 
                                     $.ajax({
                                         type: "POST",
-                                        url: "https://localhost:44363/api/login/create",
+                                        url: "/api/login/create",
                                         contentType: "application/json; charset=utf-8",
                                         data: JSON.stringify(theContact),
                                         dataType: "json",
