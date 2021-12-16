@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Durur.Modules.Api.Controllers;
+using Durur.Modules.Generic.Entities.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -9,8 +11,6 @@ namespace Durur.Erp.Api.Pages
 {
     public class SuppliersModel : PageModel
     {
-        public void OnGet()
-        {
-        }
+
     }
 }
