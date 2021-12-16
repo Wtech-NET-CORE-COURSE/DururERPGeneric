@@ -38,9 +38,9 @@ namespace Durur.Modules.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddSupplier([FromBody] Supplier supplier)
+        public async Task<ActionResult> AddSupplier([FromBody] Supplier supplier)
         {
-            _supplierServices.AddSupplierAsync(supplier);
+            await _supplierServices.AddSupplierAsync(supplier);
             return Ok();
         }
 
