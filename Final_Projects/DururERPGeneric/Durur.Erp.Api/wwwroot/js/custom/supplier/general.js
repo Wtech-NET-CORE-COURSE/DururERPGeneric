@@ -1,6 +1,38 @@
-﻿
-$(document).ready(function (e) {
+﻿$(document).ready(function(e) {
     $('.modal').modal();
+
+
+    $.ajax({
+        type: "GET",
+        url: "/api/supplier",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function(data) {
+            var table = $("#users-list-datatable").DataTable();
+
+
+            $.each(data, function(key, val) {
+                // table.row.add([
+                //     "",
+                //     data[key].supplier_ID,
+                //     data[key].supplier_Name,
+                //     data[key].createdDate,
+                //     data[key].lastModifiedDate
+                // ]).draw(false);
+                table.row.add([
+                    '<td>' + data[key].supplier_ID + '</td>',
+                    '<td><a href="page-users-view">' + data[key].supplier_Name + '</a></td>',
+                    '<td>' + data[key].createdDate + '</td>',
+                    '<td>' + data[key].lastModifiedDate + '</td>'
+                ]).draw(false);
+                //$("#users-list-datatable").append('<tr><td></td><td>' + data[key].supplier_ID + '</td><td><a href="page-users-view.html">' + data[key].supplier_Name + '</a></td><td>' + data[key].createdDate + '</td><td>' + data[key].lastModifiedDate + '</td></tr>');
+
+            });
+        },
+        _error: function(data) {
+            alert(data)
+        }
+    });
 
     //$("#add-user-button")
     //var model = {
@@ -28,4 +60,5 @@ $(document).ready(function (e) {
     //    }
 
     //});
+
 });
