@@ -20,6 +20,7 @@ namespace Durur.Modules.Generic.Business.Concrete
         public async Task AddSupplierAsync(Supplier supplier)
         {
             await _unitOfWork.Suppliers.AddAsync(supplier);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task<Supplier> GetSupplierByIDAsync(int id)
