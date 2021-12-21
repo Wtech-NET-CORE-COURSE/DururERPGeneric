@@ -7,7 +7,7 @@ namespace Durur.Erp.Api.TokenModels
 {
     public class UserLogin
     {
-        public string Email { get; set; }
+        public string UserCredential { get; set; }
 
         public string Password { get; set; }
     }

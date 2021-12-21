@@ -1,9 +1,10 @@
 ﻿using System;
+using Durur.Modules.DataAccess.MigrateSeeds;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Durur.Modules.Generic.DataAccess.Migrations
 {
-    public partial class test : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -684,6 +685,8 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                 name: "IX_Warehouses_Location_ID",
                 table: "Warehouses",
                 column: "Location_ID");
+            //string _sql = MigrationUtility.ReadSql(typeof(MigrationUtility), "Countries.sql");
+            //migrationBuilder.Sql(_sql);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
