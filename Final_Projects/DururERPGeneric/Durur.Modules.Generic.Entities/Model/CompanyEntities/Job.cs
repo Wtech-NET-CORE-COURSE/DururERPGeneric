@@ -17,7 +17,7 @@ namespace Durur.Modules.Generic.Entities.Model
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Job_ID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(100)]
         public string Job_Title { get; set; }
 
         public ICollection<Employee> Employees { get; set; }
