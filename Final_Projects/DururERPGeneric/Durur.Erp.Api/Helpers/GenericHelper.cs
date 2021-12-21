@@ -29,18 +29,7 @@ namespace Durur.Erp.Api.Helpers
             return token;
         }
 
-        public async Task<string> GetHashSha256Async(string pwd)
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(pwd);
-            SHA256Managed hashstring = new SHA256Managed();
-            byte[] hash = hashstring.ComputeHash(bytes);
-            var hashBuild =new StringBuilder();
-            foreach (byte x in hash)
-            {
-                hashBuild.Append(String.Format("{0:x2}", x));
-            }
-            return hashBuild.ToString();
-        }
+
         public string GetHashSha256(string pwd)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(pwd);

@@ -37,7 +37,7 @@ namespace Durur.Erp.Api.Controllers
             user.EmailConfirmed = false;
             user.PhoneNumberConfirmed = false;
             user.TwoFactorEnabled = false;
-            user.PasswordHash = await genericHelper.GetHashSha256Async(user.PasswordHash);
+            user.PasswordHash = genericHelper.GetHashSha256(user.PasswordHash);
             context.Users.Add(user);
             await context.SaveChangesAsync();
             return true;
