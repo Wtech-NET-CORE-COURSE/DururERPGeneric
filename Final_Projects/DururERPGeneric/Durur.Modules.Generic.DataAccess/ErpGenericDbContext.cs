@@ -57,9 +57,7 @@ namespace Durur.Modules.Generic.DataAccess
         public ErpGenericDbContext(DbContextOptions<ErpGenericDbContext> options)
             : base(options)
         {
-
         }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

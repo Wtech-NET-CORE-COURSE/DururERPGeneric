@@ -20,9 +20,8 @@ namespace Durur.Modules.Generic.Entities.Model
         [Required]
         public string ISO_Code { get; set; }
 
-        [Required]
         public string Country_Name { get; set; }
-        [Required]
+
         public int Phone_Code { get; set; }
 
         public ICollection<Location> Locations { get; set; }

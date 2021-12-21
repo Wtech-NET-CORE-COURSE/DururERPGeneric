@@ -23,8 +23,7 @@
                     '<td>' + data[key].supplier_ID + '</td>',
                     '<td><a href="page-users-view">' + data[key].supplier_Name + '</a></td>',
                     '<td>' + data[key].createdDate + '</td>',
-                    '<td>' + data[key].lastModifiedDate + '</td>',
-                    '<td><div class="center-align"><a href="page-users-edit"><i class="material-icons">edit</i></a><a href="page-users-view"><i class="material-icons">remove_red_eye</i></a></div></td>'
+                    '<td>' + data[key].lastModifiedDate + '</td>'
                 ]).draw(false);
                 //$("#users-list-datatable").append('<tr><td></td><td>' + data[key].supplier_ID + '</td><td><a href="page-users-view.html">' + data[key].supplier_Name + '</a></td><td>' + data[key].createdDate + '</td><td>' + data[key].lastModifiedDate + '</td></tr>');
 

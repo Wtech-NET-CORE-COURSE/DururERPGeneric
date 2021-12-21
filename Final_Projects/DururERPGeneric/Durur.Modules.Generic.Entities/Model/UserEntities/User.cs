@@ -9,7 +9,6 @@ namespace Durur.Modules.Generic.Entities.Model
 {
     public class User : IdentityUser<int>
     {
-        [Required]
         public bool IsActive { get; set; }
 
         public string RefreshToken { get; set; }

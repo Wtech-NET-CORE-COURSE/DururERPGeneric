@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Durur.Modules.Generic.DataAccess.Migrations
 {
     [DbContext(typeof(ErpGenericDbContext))]
-    [Migration("20211220204021_init")]
-    partial class init
+    [Migration("20211213071121_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
