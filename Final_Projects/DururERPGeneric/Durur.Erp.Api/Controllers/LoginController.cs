@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Durur.Erp.Api.Helpers;
+using System.Text.RegularExpressions;
 
 namespace Durur.Erp.Api.Controllers
 {
@@ -21,7 +22,7 @@ namespace Durur.Erp.Api.Controllers
         private readonly IConfiguration configuration;
         private readonly GenericHelper genericHelper;
 
-        public LoginController(ErpGenericDbContext context, IConfiguration configuration,GenericHelper genericHelper)
+        public LoginController(ErpGenericDbContext context, IConfiguration configuration, GenericHelper genericHelper)
         {
             this.context = context;
             this.configuration = configuration;
@@ -31,6 +32,12 @@ namespace Durur.Erp.Api.Controllers
         [HttpPost("[action]")]
         public async Task<bool> Create([FromBody] User user)
         {
+            user.NormalizedEmail = user.Email.ToUpper();
+            user.NormalizedUserName = user.UserName.ToUpper();
+            user.EmailConfirmed = false;
+            user.PhoneNumberConfirmed = false;
+            user.TwoFactorEnabled = false;
+            user.PasswordHash = await genericHelper.GetHashSha256Async(user.PasswordHash);
             context.Users.Add(user);
             await context.SaveChangesAsync();
             return true;
@@ -41,8 +48,13 @@ namespace Durur.Erp.Api.Controllers
         [HttpPost("[action]")]
         public async Task<Token> Login([FromBody] UserLogin userLogin)
         {
-            User user = await context.Users.FirstOrDefaultAsync(w => w.Email == userLogin.Email && w.PasswordHash == userLogin.Password);
-            if (user != null)
+            User user = null;
+            //Regex mailRegex = new Regex(@"^\\w + ([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w{2,}([-.]\\w+)*$");
+            if (userLogin.UserCredential.Contains("@"))
+                user = await context.Users.FirstOrDefaultAsync(w => w.NormalizedEmail == userLogin.UserCredential.ToUpper() && w.PasswordHash == genericHelper.GetHashSha256(userLogin.Password));
+            else
+                user = await context.Users.FirstOrDefaultAsync(w => w.NormalizedUserName == userLogin.UserCredential.ToUpper() && w.PasswordHash == genericHelper.GetHashSha256(userLogin.Password));
+            if (user != null && user.IsActive)
             {
                 return await genericHelper.CreateToken(user, context, configuration);
             }
