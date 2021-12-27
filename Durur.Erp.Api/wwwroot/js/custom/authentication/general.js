@@ -1,35 +1,45 @@
-﻿function registerUser() {
-    var userModel = {
-        userName: document.getElementById('username').value,
-        email: document.getElementById('email').value,
-        passwordHash: document.getElementById('password').value,
-    };
-    $.ajax({
-        type: "POST",
-        url: "/api/login/create",
-        contentType: "application/json;charset=utf-8",
-        data: JSON.stringify(userModel),
-        dataType: "json",
-        success: function(data) {
-            console.log(data);
-            Swal.fire({
-                text: "Succesfully registered.",
-                icon: "success",
-                buttonsStyling: !1,
-                confirmButtonText: "Ok, got it!",
-                customClass: { confirmButton: "btn btn-primary" }
-            }).then((function(t) { t.isConfirmed && (e.reset()) }))
-        },
-        error: function(data) {
-            console.log(data);
-        }
-    }).done(function(data) {
+﻿$(document).ready(function () {
+    $("#register-button").click(function (r) {
+        r.preventDefault();
+        var userModel = {
+            userName: document.getElementById('username').value,
+            email: document.getElementById('email').value,
+            passwordHash: document.getElementById('password').value,
+        };
+        //var userModel = {
+        //    userName: $("[name='username']").val(),
+        //    email: $("[name='email']").val(),
+        //        passwordHash: $("[name='password']").val()
+        //};
         $.ajax({
-            type: 'Get',
-            url: '/Login'
-        })
+            type: "POST",
+            url: "/api/login/create",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(userModel),
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                Swal.fire({
+                    text: "Succesfully registered.",
+                    icon: "success",
+                    buttonsStyling: !1,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: { confirmButton: "btn btn-primary" }
+                }).then((function (t) {
+                    if (t.isConfirmed === true)
+                        window.location.href = "Login";
+                }))
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+
     });
-}
+
+});
+
+
 
 function loginUser() {
     var userModel = {
@@ -42,16 +52,25 @@ function loginUser() {
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(userModel),
         dataType: "json",
-        success: function(data) {
+        success: function (data) {
             // window.open("Suppliers");
-            window.location.href = "Suppliers";
-            // Swal.fire({
-            //     text: "Succesfully logged in.",
-            //     icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!",
-            //     customClass: { confirmButton: "btn btn-primary" }
-            // }).then((function (t) { t.isConfirmed && (e.reset()) }))
+            if (data !== undefined) {
+                Swal.fire({
+                    text: "Succesfully logged in. Redirecting..",
+                    icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!",
+                    customClass: { confirmButton: "btn btn-primary" }
+                }).then((function (t) {
+                    if (t.isConfirmed === true)
+                        window.location.href = "Suppliers";
+                }));
+            }
+            else {
+
+            }
+
+
         },
-        error: function(data) {
+        error: function (data) {
             console.log(data);
         }
     });

@@ -8,7 +8,7 @@
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function(data) {
-            var table = $("#users-list-datatable").DataTable();
+            var table = $("#suppliers-list-datatable").DataTable();
 
 
             $.each(data, function(key, val) {
