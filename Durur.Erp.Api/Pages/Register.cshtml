@@ -50,7 +50,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="container">
                 <div id="register-page" class="row">
                     <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 register-card bg-opacity-8">
-                        <form class="login-form" id="register-form">
+                        <form class="login-form" id="register-form" name="register-form">
                             <div class="row">
                                 <div class="input-field col s12">
                                     <h5 class="ml-4">Register</h5>
@@ -60,29 +60,33 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="row margin">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">person_outline</i>
-                                    <input id="username" type="text">
+                                    <input id="username" name="username" type="text" data-error=".errorUsername">
                                     <label for="username" class="center-align">Username</label>
+                                    <small class="errorUsername"></small>
                                 </div>
                             </div>
                             <div class="row margin">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">mail_outline</i>
-                                    <input id="email" type="email">
+                                    <input id="email" name="email" type="email" data-error=".errorEmail">
                                     <label for="email">Email</label>
+                                    <small class="errorEmail"></small>
                                 </div>
                             </div>
                             <div class="row margin">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">lock_outline</i>
-                                    <input id="password" type="password">
+                                    <input id="password" name="password" type="password" data-error=".errorPassword" >
                                     <label for="password">Password</label>
+                                    <small class="errorPassword"></small>
                                 </div>
                             </div>
                             <div class="row margin">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">lock_outline</i>
-                                    <input id="password-again" type="password">
+                                    <input id="password-again" name="password-again" type="password" data-error=".errorPasswordAgain">
                                     <label for="password-again">Password again</label>
+                                    <small class="errorPasswordAgain"></small>
                                 </div>
                             </div>
                             <div class="row">
@@ -107,6 +111,9 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="~/app-assets/js/vendors.min.js"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
+
+    <script src="~/js/custom/authentication/formValidation.js"></script>
+    <script src="~/app-assets/vendors/jquery-validation/jquery.validate.min.js"></script>
     <script src="~/app-assets/vendors/sweetalert2/sweetalert2.all.min.js"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN THEME  JS-->
@@ -115,7 +122,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="~/app-assets/js/custom/custom-script.min.js"></script>
     <!-- END THEME  JS-->
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="~/js/custom/authentication/general.js"></script>
+    <script src="~/js/custom/authentication/register-page.js"></script>
     <!-- END PAGE LEVEL JS-->
 </body>
 
