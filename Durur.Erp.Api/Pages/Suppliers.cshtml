@@ -664,7 +664,6 @@
 
                 <div id="addsuppliermodal" class="modal">
                     <div class="modal-content">
-
                         <!-- users edit account form start -->
                         <form id="supplierForm">
                             <div class="row">
@@ -683,12 +682,17 @@
                                             <small class="errorTxt2"></small>
                                         </div>
                                         <div class="input-field">
-                                            <select class="select2 browser-default" id="locationselect">
-                                                <option value="USA">USA</option>
-                                                <option value="India">India</option>
-                                                <option value="Canada">Canada</option>
+                                            <select class="select2 browser-default" id="countrySelection" onchange="updateLocations()">
+                                                <option value="" disabled selected>Choose Country</option>
                                             </select>
                                         </div>
+                                        <div class="input-field">
+                                            <select class="select2 browser-default" id="locationselect">
+                                                <option value="" disabled selected>Choose location</option>
+                                            </select>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -716,7 +720,7 @@
 @section Scripts{
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/data-tables/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
-    
+    <link href="~/app-assets/vendors/select2/select2-materialize.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="~/app-assets/css/pages/page-suppliers.min.css">
 
 
@@ -729,6 +733,6 @@
     <script src="../../../app-assets/vendors/jquery-validation/jquery.validate.min.js"></script>
     <script src="~/js/custom/supplier/general.js"></script>
     @*<script src="~/app-assets/js/scripts/page-users.min.js"></script>*@
-    <script src="~/js/custom/supplier/re-edit-page-suppliers.min.js"></script>
+    <script src="~/js/custom/supplier/page-suppliers.min.js"></script>
 
 }
