@@ -81,7 +81,7 @@ namespace Durur.Erp.Api
             });
 
 
-            services.AddMvc().AddRazorPagesOptions(opt => opt.Conventions.AddPageRoute("/Register", ""));
+            services.AddMvc().AddRazorPagesOptions(opt => opt.Conventions.AddPageRoute("/Login", ""));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
