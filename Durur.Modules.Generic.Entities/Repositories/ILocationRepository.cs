@@ -8,6 +8,7 @@ namespace Durur.Modules.Generic.Entities.Repositories
 {
     public interface ILocationRepository : IRepository<Location>
     {
-
+        Task<IEnumerable<Location>> GetLocationsWithCountries();
+        Task<IEnumerable<Location>> GetLocationsByCountryID(int id);
     }
 }

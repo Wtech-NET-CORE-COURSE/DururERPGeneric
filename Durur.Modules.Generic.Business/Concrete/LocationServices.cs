@@ -22,15 +22,25 @@ namespace Durur.Modules.Generic.Business.Concrete
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<Location>> GetByCountryID(int countryID)
+        {
+            return await _unitOfWork.Locations.GetLocationsByCountryID(countryID);
+        }
+
         public Task<Location> GetLocationByIDAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Location>> GetLocationsAsync()
+        public async Task<IEnumerable<Location>> GetLocationsAsync()
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.Locations.GetAllAsync();
         }
+        public async Task<IEnumerable<Location>> GetLocationsWithCountries()
+        {
+            return await _unitOfWork.Locations.GetLocationsWithCountries();
+        }
+        
 
         public Task RemoveLocation(int id)
         {

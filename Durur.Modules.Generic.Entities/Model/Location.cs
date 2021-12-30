@@ -15,10 +15,11 @@ namespace Durur.Modules.Generic.Entities.Model
             Warehouses = new Collection<Warehouse>();
             Customer_Addresses = new Collection<CustomerAddress>();
         }
-
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Location_ID { get; set; }
 
         public string City { get; set; }
+
 
         public Country Country { get; set; }
 

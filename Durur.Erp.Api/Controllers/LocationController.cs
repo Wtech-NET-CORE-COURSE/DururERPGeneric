@@ -25,10 +25,33 @@ namespace Durur.Modules.Api.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<Location>>> GetAllAsync()
         {
             var locations = await _locationServices.GetLocationsAsync();
             return Ok(locations);
+        }
+
+        [HttpGet]
+        [Route("[action]/{id}")]
+        public async Task<ActionResult<IEnumerable<Location>>> GetByCountryID(int id)
+        {
+            var locations = await _locationServices.GetByCountryID(id);
+            return Ok(locations);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult<IEnumerable<Location>>> GetWithCountries()
+        {
+            var rawlocations = await _locationServices.GetLocationsWithCountries();
+            var processedlocations = rawlocations.Select(l => new
+            {
+                l.Location_ID,
+                l.City,
+                l.Country.Country_ID,
+                l.Country.Country_Name
+            });
+            return Ok(processedlocations);
         }
 
         [HttpGet("{id}")]
