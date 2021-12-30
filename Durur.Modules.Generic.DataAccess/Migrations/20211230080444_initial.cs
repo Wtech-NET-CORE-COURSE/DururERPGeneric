@@ -1,10 +1,9 @@
 ﻿using System;
-using Durur.Modules.DataAccess.MigrateSeeds;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Durur.Modules.Generic.DataAccess.Migrations
 {
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,7 +58,7 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                     Country_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ISO_Code = table.Column<string>(type: "char(2)", nullable: false),
-                    Country_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone_Code = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -88,7 +87,7 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                 {
                     Job_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Job_Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    Job_Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -264,8 +263,8 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                 {
                     Company_Position_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Company_Position_Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    Company_Position_Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Company_Position_Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Company_Position_Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmployeeCompanyPositionDepartment_ID = table.Column<int>(type: "int", nullable: true),
                     EmployeeCompanyPositionPosition_ID = table.Column<int>(type: "int", nullable: true),
                     EmployeeCompanyPositionEmployee_ID = table.Column<int>(type: "int", nullable: true)
@@ -685,8 +684,6 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                 name: "IX_Warehouses_Location_ID",
                 table: "Warehouses",
                 column: "Location_ID");
-            //string _sql = MigrationUtility.ReadSql(typeof(MigrationUtility), "Countries.sql");
-            //migrationBuilder.Sql(_sql);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
