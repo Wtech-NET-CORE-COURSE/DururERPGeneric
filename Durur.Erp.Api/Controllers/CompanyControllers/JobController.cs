@@ -24,7 +24,7 @@ namespace Durur.Erp.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Job>> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<Job>>> GetAllAsync()
         {
             var jobs = await _jobServices.GetJobsAsync();
             return Ok(jobs);
