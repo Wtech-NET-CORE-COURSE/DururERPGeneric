@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Durur.Modules.Generic.DataAccess\Durur.Modules.Generic.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\app-assets\vendors\jquery-lazy\" />
+  </ItemGroup>
+
 </Project>
