@@ -19,6 +19,8 @@
                     showConfirmButton:false,
                     timer: 1500
                 }).then((function () {
+
+                    console.log(data)
                         window.location.href = "Suppliers";
                 }));
             }
