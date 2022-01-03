@@ -83,50 +83,47 @@
 
     //});
 
-
-
 });
 
 
 $('.lang').click(function () {
-   $('#suppliers-list-datatable').DataTable().clear().destroy();
+    $('#suppliers-list-datatable').DataTable().clear().destroy();
     var pageLang = $(this).data('language');
     var datatableLanguages = {
         'tr': '//cdn.datatables.net/plug-ins/1.11.3/i18n/tr.json',
-        'en':'',
+        'en': '',
         'fr': '//cdn.datatables.net/plug-ins/1.11.3/i18n/fr_fr.json',
         'pt': '//cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json',
-        'de':'//cdn.datatables.net/plug-ins/1.11.3/i18n/de_de.json'
+        'de': '//cdn.datatables.net/plug-ins/1.11.3/i18n/de_de.json'
     };
 
-        $("#suppliers-list-datatable").DataTable({
-            serverSide: true,
-            processing: true,
-            filter: true,
-            autoWidth: false,
-            language: {
-                url: datatableLanguages[pageLang]
-            },
-            responsive: !0,
-            "ajax": {
-                "url": "/api/supplier/GetSuppliersFiltered",
-                "type": "POST",
-                "datatype": "json"
-            },
-            columnDefs: [
-                { orderable: !1, targets: [4] },
-                { width: "1%", targets: 0 },
-                { width: "120px", targets: 1 }
-            ],
-            columns: [
-                { "data": "supplier_ID", "name": "ID" },
-                { "data": "supplier_Name", "name": "Supplier Name" },
-                { "data": "createdDate", "name": "Created Date" },
-                { "data": "lastModifiedDate", "name": "Last Modified Date" },
-                { "render": function (data, row) { return '<div class="center-align"><a href="page-users-edit"><i class="material-icons">edit</i></a><a href="page-users-view"><i class="material-icons">remove_red_eye</i></a></div>' } }
-            ]
-        })
-
+    $("#suppliers-list-datatable").DataTable({
+        serverSide: true,
+        processing: true,
+        filter: true,
+        autoWidth: false,
+        language: {
+            url: datatableLanguages[pageLang]
+        },
+        responsive: !0,
+        "ajax": {
+            "url": "/api/supplier/GetSuppliersFiltered",
+            "type": "POST",
+            "datatype": "json"
+        },
+        columnDefs: [
+            { orderable: !1, targets: [4] },
+            { width: "1%", targets: 0 },
+            { width: "120px", targets: 1 }
+        ],
+        columns: [
+            { "data": "supplier_ID", "name": "ID" },
+            { "data": "supplier_Name", "name": "Supplier Name" },
+            { "data": "createdDate", "name": "Created Date" },
+            { "data": "lastModifiedDate", "name": "Last Modified Date" },
+            { "render": function (data, row) { return '<div class="center-align"><a href="page-users-edit"><i class="material-icons">edit</i></a><a href="page-users-view"><i class="material-icons">remove_red_eye</i></a></div>' } }
+        ]
+    });
 
 });
 
