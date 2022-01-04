@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 
 namespace Durur.Modules.Api.Controllers
@@ -59,11 +60,11 @@ namespace Durur.Modules.Api.Controllers
                 int pageSize = length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
                 int recordsTotal = 0;
-                var supplier = await _supplierServices.GetSuppliersAsync();
-                var supplierData = (from tempSupplier in supplier select tempSupplier);
+                var suppliers = await _supplierServices.GetSuppliersAsync();
+                var supplierData = (from tempSupplier in suppliers select tempSupplier);
                 if (!(string.IsNullOrWhiteSpace(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
                 {
-                    //supplierData = supplierData.OrderBy(s=>typeof(s.Supplier_Name) sortColumn+' '+sortColumnDirection));
+                    supplierData = supplierData.AsQueryable().OrderBy(sortColumn+" "+sortColumnDirection);
                 }
                 if (!string.IsNullOrEmpty(searchValue))
                 {
@@ -74,7 +75,7 @@ namespace Durur.Modules.Api.Controllers
                 var jsonData = new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data };
                 return Ok(jsonData);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return NotFound();
             }

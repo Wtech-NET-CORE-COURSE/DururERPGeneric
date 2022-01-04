@@ -117,10 +117,10 @@ $('.lang').click(function () {
             { width: "120px", targets: 1 }
         ],
         columns: [
-            { "data": "supplier_ID", "name": "ID" },
-            { "data": "supplier_Name", "name": "Supplier Name" },
-            { "data": "createdDate", "name": "Created Date" },
-            { "data": "lastModifiedDate", "name": "Last Modified Date" },
+            { "data": "supplier_ID", "name": "Supplier_ID" },
+            { "data": "supplier_Name", "name": "Supplier_Name" },
+            { "data": "createdDate", "name": "CreatedDate" },
+            { "data": "lastModifiedDate", "name": "LastModifiedDate" },
             { "render": function (data, row) { return '<div class="center-align"><a href="page-users-edit"><i class="material-icons">edit</i></a><a href="page-users-view"><i class="material-icons">remove_red_eye</i></a></div>' } }
         ]
     });
