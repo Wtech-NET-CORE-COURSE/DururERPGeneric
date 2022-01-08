@@ -130,14 +130,14 @@ $('.lang').click(function () {
 function updateLocations() {
 
     var results = $('#countrySelection').select2('data');
-    var locaApiUri = '/api/location/GetByCountryID/' + results[0].id;
+    var locaApiUri = '/api/location/GetByCountryID/' + results[0].country_ID;
+    $('#locationselect').empty();
     $.ajax({
         type: "GET",
         url: locaApiUri,
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            console.log(result);
             var data = $.map(result, function (obj) {
                 obj.id = obj.id || obj.location_ID; // replace pk with your identifier
                 obj.text = obj.text || obj.city;
