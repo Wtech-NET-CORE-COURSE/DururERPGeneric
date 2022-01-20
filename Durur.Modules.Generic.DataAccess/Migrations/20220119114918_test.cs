@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Durur.Modules.Generic.DataAccess.Migrations
 {
-    public partial class initial : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -390,7 +390,7 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                     Supplier_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Supplier_Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Location_ID = table.Column<int>(type: "int", nullable: true),
+                    Location_ID = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -402,7 +402,7 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                         column: x => x.Location_ID,
                         principalTable: "Locations",
                         principalColumn: "Location_ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

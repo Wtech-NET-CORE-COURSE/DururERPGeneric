@@ -15,12 +15,14 @@ namespace Durur.Modules.Generic.Entities.Model
             Supplied_Products = new Collection<Product>();
         }
 
-        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Supplier_ID { get; set; }
 
         [StringLength(50)]
         public string Supplier_Name { get; set; }
 
+        [ForeignKey("Location")]
+        public int Location_ID { get; set; }
         public Location Location { get; set; }
 
         public ICollection<Product> Supplied_Products { get; set; }

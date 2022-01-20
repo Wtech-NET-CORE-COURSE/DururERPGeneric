@@ -18,13 +18,14 @@ namespace Durur.Modules.Generic.DataAccess.Repositories
         public async Task<IEnumerable<Location>> GetLocationsWithCountries()
         {
             //var locations = await Context.Locations.Join(Context.Countries,location=>location.Country.Country_ID,country=>country.Country_ID, (location,country)=> new Location {Location_ID= location.Location_ID,Country=country}).ToListAsync();
-            var locations = await Context.Locations.Include(l=>l.Country).ToListAsync();
+            var locations = await Context.Locations.Include(l => l.Country).ToListAsync();
             //var locations = await Context.Locations.Select(l=>l);
             return locations;
         }
 
         public async Task<IEnumerable<Location>> GetLocationsByCountryID(int id)
-        {            var locations = await Context.Locations.Where(l=>l.Country.Country_ID==id).ToListAsync();
+        {
+            var locations = await Context.Locations.Where(l => l.Country.Country_ID == id).ToListAsync();
             return locations;
         }
     }

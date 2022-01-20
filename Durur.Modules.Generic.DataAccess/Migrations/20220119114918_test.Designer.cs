@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Durur.Modules.Generic.DataAccess.Migrations
 {
     [DbContext(typeof(ErpGenericDbContext))]
-    [Migration("20211230080444_initial")]
-    partial class initial
+    [Migration("20220119114918_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -472,7 +472,7 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Location_ID")
+                    b.Property<int>("Location_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Supplier_Name")
@@ -873,7 +873,9 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                 {
                     b.HasOne("Durur.Modules.Generic.Entities.Model.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("Location_ID");
+                        .HasForeignKey("Location_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Location");
                 });

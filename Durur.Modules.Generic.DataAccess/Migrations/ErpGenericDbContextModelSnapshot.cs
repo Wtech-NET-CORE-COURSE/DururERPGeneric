@@ -470,7 +470,7 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Location_ID")
+                    b.Property<int>("Location_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Supplier_Name")
@@ -871,7 +871,9 @@ namespace Durur.Modules.Generic.DataAccess.Migrations
                 {
                     b.HasOne("Durur.Modules.Generic.Entities.Model.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("Location_ID");
+                        .HasForeignKey("Location_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Location");
                 });
