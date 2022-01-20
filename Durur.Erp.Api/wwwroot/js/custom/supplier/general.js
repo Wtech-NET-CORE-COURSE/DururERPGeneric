@@ -1,7 +1,6 @@
 ﻿$(document).ready(function (e) {
     $('.modal').modal();
 
-
     $.ajax({
         type: "GET",
         url: '/api/country',
@@ -14,15 +13,90 @@
                 return obj;
             });
             $('#countrySelection').select2({
+                data: data
+            });
+            $('#countrySelectiontest').select2({
                 data: data,
-                matcher: matchCustom,
-                dropdownParent: $("#addsuppliermodal")
+                matcher: matchCustom
             });
         }
     });
 
 
+    $.ajax({
+        type: "GET",
+        url: "/api/supplier/GetSuppliersFiltered",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+        }
+    });
 
+    var addButton = document.getElementById("addSupplier");
+    addButton.addEventListener("click", function (r) {
+        r.preventDefault();
+
+        $("#supplierForm").valid();
+        if (validator.numberOfInvalids() === 0) {
+            var supplierModel = {
+                supplier_Name: document.getElementById('supplierName').value,
+                location_ID: parseInt($('#locationselect').select2('data')[0].location_ID)
+            };
+
+            console.log(supplierModel);
+            $.ajax({
+                type: "POST",
+                url: "/api/supplier/",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify(supplierModel),
+                dataType: "json",
+                success: function (data) {
+                    Swal.fire({
+                        text: "Succesfully registered.",
+                        icon: "success",
+                        buttonsStyling: !1,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: { confirmButton: "btn btn-primary" }
+                    }).then((function (t) {
+                        if (t.isConfirmed === true)
+                            window.location.href = "Login";
+                    }));
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+    });
+    // Loading remote data
+    //$("#countrySelection").select2({
+    //    dropdownAutoWidth: true,
+    //    width: '100%',
+    //    delay: 250,
+    //    dropdownParent: $('.modal'),
+    //    ajax: {
+    //        url: "/api/country",
+    //        dataType: 'json',
+    //        contentType: "application/json;charset=utf-8",
+    //        data: function (params) {
+    //            var query = {
+    //                search: params.term,
+    //                page: params.page || 1
+    //            }
+
+    //            // Query parameters will be ?search=[term]&page=[page]
+    //            return query;
+    //        },
+    //        processResults: function (data, page) {
+    //            console.log(data);
+    //            var result = $.map(data, function (item) { return { id: item.country_ID, text: item.country_Name } });
+    //            return { results: result };
+    //        }
+    //    },
+    //    placeholder: 'Search for a repository'
+    //});
     //$.ajax({
     //    type: "GET",
     //    url: "/api/supplier",
@@ -86,6 +160,7 @@
 });
 
 
+
 $('.lang').click(function () {
     $('#suppliers-list-datatable').DataTable().clear().destroy();
     var pageLang = $(this).data('language');
@@ -125,10 +200,22 @@ $('.lang').click(function () {
         ]
     });
 
+
 });
 
-function updateLocations() {
+function DeleteRow(id) {
+    var locaApiUri = '/api/supplier/' + id;
+    $.ajax({
+        type: "DELETE",
+        url: locaApiUri,
+        contentType: "application/json;charset=utf-8",
+        success: function () {
+            $('#suppliers-list-datatable').DataTable().ajax.reload();
+        }
+    });
+}
 
+function updateLocations() {
     var results = $('#countrySelection').select2('data');
     var locaApiUri = '/api/location/GetByCountryID/' + results[0].country_ID;
     $('#locationselect').empty();
