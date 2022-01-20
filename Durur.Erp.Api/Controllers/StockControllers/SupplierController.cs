@@ -41,6 +41,8 @@ namespace Durur.Modules.Api.Controllers
         [HttpPost]
         public async Task<ActionResult> AddSupplier([FromBody] Supplier supplier)
         {
+            supplier.CreatedDate =DateTime.UtcNow;
+            supplier.LastModifiedDate = DateTime.UtcNow;
             await _supplierServices.AddSupplierAsync(supplier);
             return Ok();
         }
@@ -89,11 +91,11 @@ namespace Durur.Modules.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteSupplier(int id)
+        public async Task<IActionResult> DeleteSupplier(int id)
         {
             if (_supplierServices.GetSupplierByIDAsync(id) != null)
             {
-                _supplierServices.RemoveSupplier(id);
+                await _supplierServices.RemoveSupplier(id);
                 return Ok();
             }
             return NotFound();
